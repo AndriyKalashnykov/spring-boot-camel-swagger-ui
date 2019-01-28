@@ -12,6 +12,12 @@ docker image rm spring-boot-camel-swagger-ui
 docker build --tag spring-boot-camel-swagger-ui .
 docker run --rm -p 8080:8080 -p 8081:8081 spring-boot-camel-swagger-ui
 
+Tag
+--- 
+git tag spring-boot-camel-swagger-ui
+git tag -f spring-boot-camel-swagger-ui
+git push origin --tags
+
 java -jar target/spring-boot-swagger-0.0.1-SNAPSHOT.jar
 java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n -jar target/spring-boot-swagger-0.0.1-SNAPSHOT.jar
 mvn clean package spring-boot:run
