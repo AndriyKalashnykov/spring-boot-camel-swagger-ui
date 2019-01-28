@@ -1,0 +1,9 @@
+camel:
+  springboot:
+    # The Camel context name
+    name: spring-boot-swagger
+
+  component:
+    servlet:
+      mapping:
+        contextPath: /spring-boot-swagger
