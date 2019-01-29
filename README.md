@@ -70,7 +70,7 @@ http://localhost:8081/camel/routes
 
 OCP
 ---
-app name: s2i-fuse70-spring-boot-camel-swagger-ui
+app name: spring-boot-camel-swagger-ui
 git repository url: https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui
 git reference: spring-boot-camel-swagger-ui
 
