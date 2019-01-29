@@ -67,6 +67,9 @@ http://localhost:8081/camel/routes
 
 OCP
 ---
+app name: s2i-fuse70-spring-boot-camel-swagger-ui
+git repository url: https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui
+git reference: spring-boot-camel-swagger-ui
 
 oc get all --selector app=s2i-fuse70-spring-boot-camel-swagger-ui -o name
 oc delete all --selector app=s2i-fuse70-spring-boot-camel-swagger-ui
