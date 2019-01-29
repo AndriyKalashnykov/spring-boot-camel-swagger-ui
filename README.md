@@ -1,11 +1,11 @@
 # spring-boot-camel-swagger-ui
-# https://access.redhat.com/documentation/en-us/red_hat_fuse/7.2/html-single/release_notes/#FISDistrib
+https://access.redhat.com/documentation/en-us/red_hat_fuse/7.2/html-single/release_notes/#FISDistrib
 
 # Red Hat Fuse Supported Standards
-# https://access.redhat.com/articles/375743
+https://access.redhat.com/articles/375743
 
 # Red Hat Fuse - Component Details
-# https://access.redhat.com/articles/348423
+https://access.redhat.com/articles/348423
 
 This repository contains a demo of Spring Boot with Apache Camel and Swagger UI.
 
