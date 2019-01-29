@@ -7,6 +7,9 @@ https://access.redhat.com/articles/375743
 # Red Hat Fuse - Component Details
 https://access.redhat.com/articles/348423
 
+# Fuse on OpenShift Guide
+https://access.redhat.com/documentation/en-us/red_hat_fuse/7.2/pdf/fuse_on_openshift_guide/Red_Hat_Fuse-7.2-Fuse_on_OpenShift_Guide-en-US.pdf
+
 This repository contains a demo of Spring Boot with Apache Camel and Swagger UI.
 
 * Spring Boot 1.5.16.RELEASE
@@ -68,3 +71,11 @@ OCP
 oc get all --selector app=s2i-fuse70-spring-boot-camel-swagger-ui -o name
 oc delete all --selector app=s2i-fuse70-spring-boot-camel-swagger-ui
 oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=s2i-fuse70-spring-boot-camel-swagger-ui
+
+
+oc get template -n openshift
+oc new-project test
+oc project test
+
+mvn fabric8:undeploy
+mvn fabric8:deploy -Popenshift
