@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.redhat</groupId>
-    <artifactId>spring-boot-swagger</artifactId>
+    <artifactId>spring-boot-camel-swagger-ui</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
