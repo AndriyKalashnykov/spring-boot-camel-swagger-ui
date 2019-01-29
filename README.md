@@ -76,18 +76,34 @@ git reference: spring-boot-camel-swagger-ui
 
 oc get all --selector app=s2i-fuse70-spring-boot-camel-swagger-ui -o name
 oc delete all --selector app=s2i-fuse70-spring-boot-camel-swagger-ui
-oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=s2i-fuse70-spring-boot-camel-swagger-ui
+oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=spring-boot-camel-swagger-ui
 
 oc get pods -w
 oc get services
+oc get svc
 oc expose service s2i-fuse70-spring-boot-camel-swagger-ui
 oc get routes
 oc scale --replicas=2 dc s2i-fuse70-spring-boot-camel-swagger-ui
+
+oc logs -f <pod>
 
 oc get template -n openshift
 oc new-project test
 oc project test
 
+fabric8
+---
+
+oc new-app wildfly:10~https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui#master
+
+Create service/routes
+--
 mvn fabric8:apply
-mvn fabric8:undeploy
+
+Deploy
+--
 mvn fabric8:deploy -Popenshift
+
+Undelploy
+--
+mvn fabric8:undeploy
