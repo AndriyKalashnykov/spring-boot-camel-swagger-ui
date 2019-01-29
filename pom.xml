@@ -17,10 +17,11 @@
         <camel.version>2.20.1</camel.version>
         <proto-maven-plugin.version>1.2.1</proto-maven-plugin.version>
 
-        <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
-        <fabric8.version>2.3.7</fabric8.version>
+        <spring-boot.version>1.5.16.RELEASE</spring-boot.version>
+        <camel.version>2.21.0</camel.version>
+        <fabric8.version>3.0.11.fuse-720027-redhat-00001</fabric8.version>
         <!-- maven plugin versions -->
-        <fabric8.maven.plugin.version>3.5.33</fabric8.maven.plugin.version>
+        <fabric8.maven.plugin.version>3.5.33.fuse-720026-redhat-00001</fabric8.maven.plugin.version>
         <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <jdk-source.version>1.8</jdk-source.version>
@@ -63,26 +64,32 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-spring-boot-starter</artifactId>
+            <version>${camel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-stream-starter</artifactId>
+            <version>${camel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-consul-starter</artifactId>
+            <version>${camel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-servlet</artifactId>
+            <version>${camel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-swagger</artifactId>
+            <version>${camel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-jackson-starter</artifactId>
+            <version>${camel.version}</version>
         </dependency>
     </dependencies>
 
