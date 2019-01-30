@@ -116,17 +116,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.apache.camel</groupId>-->
-        <!--<artifactId>camel-stream-starter</artifactId>-->
-        <!--<version>${camel.version}</version>-->
-        <!--<exclusions>-->
-        <!--<exclusion>-->
-        <!--<artifactId>spring-boot-starter</artifactId>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--</exclusion>-->
-        <!--</exclusions>-->
-        <!--</dependency>-->
+
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-consul-starter</artifactId>

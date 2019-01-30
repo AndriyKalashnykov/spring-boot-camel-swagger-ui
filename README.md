@@ -102,6 +102,13 @@ oc new-app fabric8/s2i-java:2.1~https://github.com/AndriyKalashnykov/spring-boot
 
 Create service/routes
 --
+oc get services -o json
+oc get endpoints -o json
+oc explain route.spec.port
+
+oc patch route/spring-boot-camel-swagger-ui -p '{"spec":{"port":{"targetPort":8080}}}'
+
+oc expose svc spring-boot-camel-swagger-ui --port=8081
 mvn fabric8:apply
 WARNING] F8: No such generated manifest file C:\projects\spring-boot-camel-swagger-ui-github\target\classes\META-INF\fabric8\openshift.yml for this project so ignoring
 
