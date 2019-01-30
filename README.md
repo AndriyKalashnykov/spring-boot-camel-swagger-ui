@@ -109,12 +109,12 @@ oc explain route.spec.port
 oc patch route/spring-boot-camel-swagger-ui -p '{"spec":{"port":{"targetPort":8080}}}'
 
 oc expose svc spring-boot-camel-swagger-ui --port=8081
-mvn fabric8:apply
+mvn package fabric8:apply
 WARNING] F8: No such generated manifest file C:\projects\spring-boot-camel-swagger-ui-github\target\classes\META-INF\fabric8\openshift.yml for this project so ignoring
 
 Deploy
 --
-mvn fabric8:resource fabric8:deploy
+mvn package fabric8:deploy
 mvn fabric8:resource fabric8:deploy -Popenshift
 
 Undelploy
