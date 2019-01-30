@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    fabric8.io/git-commit: 17e38b8316f831fe3cfeff96cc2acc2ee89243d2
+    fabric8.io/iconUrl: img/icons/camel.svg
+    fabric8.io/git-branch: master
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9779"
+  labels:
+    expose: "true"
+    app: spring-boot-camel-swagger-ui
+    provider: fabric8
+    version: 0.0.1-SNAPSHOT
+    group: com.redhat
+  name: spring-boot-camel-swagger-ui
+spec:
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: spring-boot-camel-swagger-ui
+    provider: fabric8
+    group: com.redhat
