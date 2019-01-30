@@ -13,6 +13,13 @@ https://access.redhat.com/documentation/en-us/red_hat_fuse/7.2/pdf/fuse_on_opens
 # fabric8-maven-plugin
 https://github.com/fabric8io/fabric8-maven-plugin
 
+# FUSE application templates
+https://github.com/jboss-fuse/application-templates
+https://github.com/jboss-fuse/application-templates/blob/master/quickstarts/karaf-cxf-rest-template.json 
+
+# FUSE Karaf image
+https://access.redhat.com/containers/?tab=overview#/registry.access.redhat.com/fuse7/fuse-karaf-openshift
+
 This repository contains a demo of Spring Boot with Apache Camel and Swagger UI.
 
 * Spring Boot 1.5.16.RELEASE
@@ -77,6 +84,7 @@ git reference: spring-boot-camel-swagger-ui
 oc get all --selector app=spring-boot-camel-swagger-ui -o name
 oc delete all --selector app=spring-boot-camel-swagger-ui
 oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=spring-boot-camel-swagger-ui
+oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=s2i-fuse72-karaf-cxf-rest
 oc delete all -l provider=fabric8 --grace-period=0 --force
 
 oc get services
@@ -90,6 +98,15 @@ oc logs -f <pod>
 oc get template -n openshift
 oc new-project test
 oc project test
+
+images
+--
+
+oc import-image java:8 --from=registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift --confirm
+oc import-image fuse7/fuse-karaf-openshift:latest --from=registry.access.redhat.com/fuse7/fuse-karaf-openshift --confirm
+
+oc delete istag/fuse-karaf-openshift:latest
+oc delete istag/java:8
 
 pods
 --
