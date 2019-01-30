@@ -77,8 +77,12 @@ git reference: spring-boot-camel-swagger-ui
 oc get all --selector app=spring-boot-camel-swagger-ui -o name
 oc delete all --selector app=spring-boot-camel-swagger-ui
 oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=spring-boot-camel-swagger-ui
+oc delete all -l provider=fabric8 --grace-period=0 --force
 
-oc get pods -w
+oc explain pod
+oc --loglevel 7 get pod
+oc --loglevel 9999 get pod
+oc get pods -o wide
 oc get services
 oc get svc
 oc expose service s2i-fuse70-spring-boot-camel-swagger-ui
@@ -94,15 +98,17 @@ oc project test
 fabric8
 ---
 
-oc new-app wildfly:10~https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui#master
+oc new-app fabric8/s2i-java:2.1~https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui#master
 
 Create service/routes
 --
 mvn fabric8:apply
+WARNING] F8: No such generated manifest file C:\projects\spring-boot-camel-swagger-ui-github\target\classes\META-INF\fabric8\openshift.yml for this project so ignoring
 
 Deploy
 --
-mvn fabric8:deploy -Popenshift
+mvn fabric8:resource fabric8:deploy
+mvn fabric8:resource fabric8:deploy -Popenshift
 
 Undelploy
 --
