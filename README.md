@@ -85,6 +85,9 @@ oc get all --selector app=spring-boot-camel-swagger-ui -o name
 oc delete all --selector app=spring-boot-camel-swagger-ui
 oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=spring-boot-camel-swagger-ui
 oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=s2i-fuse72-karaf-cxf-rest
+
+cleanup all created by fabric8
+--
 oc delete all -l provider=fabric8 --grace-period=0 --force
 
 oc get services
@@ -109,13 +112,24 @@ oc delete istag/fuse-karaf-openshift:latest
 oc delete istag/java:8
 
 pods
---
+---
 
+get pods for app
+--
+oc get pods --selector app=s2i-fuse72-karaf-cxf-rest
+
+force delete node
+-- 
 oc delete po/spring-boot-camel-swagger-ui-s2i-1-build --grace-period=0 --force=true --ignore-not-found=true
+
 oc explain pod
 oc --loglevel 7 get pod
 oc --loglevel 9999 get pod
 oc get pods -o wide
+
+pods on a node
+--
+oc adm manage-node node --list-pods
 
 fabric8
 ---
