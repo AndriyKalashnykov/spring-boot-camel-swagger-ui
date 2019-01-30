@@ -21,6 +21,10 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: 8080
+  - name: health
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
   selector:
     app: spring-boot-camel-swagger-ui
     provider: fabric8

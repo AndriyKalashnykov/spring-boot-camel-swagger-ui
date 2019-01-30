@@ -48,13 +48,16 @@ spec:
         livenessProbe:
           httpGet:
             path: /health
-            port: 8080
+            port: 8081
             scheme: HTTP
           initialDelaySeconds: 180
         name: spring-boot
         ports:
         - containerPort: 8080
           name: http
+          protocol: TCP
+        - containerPort: 8081
+          name: health
           protocol: TCP
         - containerPort: 9779
           name: prometheus
@@ -65,7 +68,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /health
-            port: 8080
+            port: 8081
             scheme: HTTP
           initialDelaySeconds: 10
         securityContext:
