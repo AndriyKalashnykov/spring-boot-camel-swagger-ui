@@ -79,10 +79,6 @@ oc delete all --selector app=spring-boot-camel-swagger-ui
 oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=spring-boot-camel-swagger-ui
 oc delete all -l provider=fabric8 --grace-period=0 --force
 
-oc explain pod
-oc --loglevel 7 get pod
-oc --loglevel 9999 get pod
-oc get pods -o wide
 oc get services
 oc get svc
 oc expose service s2i-fuse70-spring-boot-camel-swagger-ui
@@ -94,6 +90,15 @@ oc logs -f <pod>
 oc get template -n openshift
 oc new-project test
 oc project test
+
+pods
+--
+
+oc delete po/spring-boot-camel-swagger-ui-s2i-1-build --grace-period=0 --force=true --ignore-not-found=true
+oc explain pod
+oc --loglevel 7 get pod
+oc --loglevel 9999 get pod
+oc get pods -o wide
 
 fabric8
 ---
