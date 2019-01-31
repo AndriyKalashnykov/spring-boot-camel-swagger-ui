@@ -88,6 +88,7 @@ oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=s2i-fuse72
 
 cleanup all created by fabric8
 --
+oc get all --selector app=spring-boot-camel-swagger-ui -o name
 oc delete all -l provider=fabric8 --grace-period=0 --force
 
 oc get services
