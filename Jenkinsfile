@@ -1,19 +1,20 @@
 #!/usr/bin/groovy
 
-//@Library('github.com/fabric8io/fabric8-pipeline-library@master')
+@Library('github.com/fabric8io/fabric8-pipeline-library@master')
+def setupScript = null
 
 pipeline {
 
     agent any
 
     stages {
-        stage 'checkout scm' {
+        stage('Checkout scm') {
             steps {
                 echo 'checkout scm'
                 checkout scm
             }
         }
-        stage 'build' {
+        stage('Build') {
             steps {
                 echo 'build'
 //    openshiftBuild(buildConfig: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
@@ -21,13 +22,13 @@ pipeline {
             }
         }
 
-        stage("Test") {
+        stage('Test') {
             steps {
                 sh "mvn test"
             }
         }
 
-        stage 'deploy' {
+        stage('Deploy') {
 //        sh "mvn fabric8:undeploy"
 //        sh "mvn fabric8:deploy -Popenshift -DskipTests"
             steps {
