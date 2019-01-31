@@ -114,6 +114,14 @@ oc delete istag/java:8
 pods
 ---
 
+execute remot command
+--
+oc exec <pod> date
+
+log in
+--
+oc rsh <pod>
+
 get pods for app
 --
 oc get pods --selector app=s2i-fuse72-karaf-cxf-rest
@@ -159,3 +167,18 @@ mvn package fabric8:apply
 Undelploy
 --
 mvn fabric8:undeploy
+
+
+NodeJS example
+--
+
+oc delete all --selector app=nodejs-ex
+oc delete all --selector app=nodejs-ex-pipeline
+
+oc new-app https://github.com/sclorg/nodejs-ex --context-dir=openshift/pipeline --name nodejs-ex-pipeline
+oc logs -f bc/nodejs-ex-pipeline
+oc start-build nodejs-ex --follow
+oc get svc
+oc expose svc/nodejs-ex
+
+oc delete all --selector app=nodejs-ex

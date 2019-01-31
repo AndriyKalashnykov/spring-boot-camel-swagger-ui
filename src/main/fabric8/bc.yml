@@ -1,0 +1,28 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: spring-boot-camel-swagger-ui
+  name: spring-boot-camel-swagger-ui
+  namespace: fuse7
+spec:
+  failedBuildsHistoryLimit: 5
+  runPolicy: Serial
+  source:
+    git:
+      uri: https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui
+    type: Git
+  strategy:
+    jenkinsPipelineStrategy: {}
+    type: JenkinsPipeline
+  successfulBuildsHistoryLimit: 5
+  triggers:
+    - github:
+        secret: aayuxRcq_5ab6QcsOeKm
+      type: GitHub
+    - generic:
+        secret: sQwH414v9wCpJY7gh8G5
+      type: Generic
+    - type: ConfigChange
+status:
+  lastVersion: 1
