@@ -1,5 +1,7 @@
 #!/usr/bin/groovy
 
+// https://github.com/openshift/jenkins-plugin
+
 @Library('github.com/fabric8io/fabric8-pipeline-library@master')
 def setupScript = null
 
@@ -17,7 +19,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'build'
-//    openshiftBuild(buildConfig: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
+//    openshiftBuild(bldCfg: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
                 sh "mvn clean package"
             }
         }
@@ -33,7 +35,7 @@ pipeline {
 //        sh "mvn fabric8:deploy -Popenshift -DskipTests"
             steps {
                 echo 'deploy'
-                openshiftDeploy(deploymentConfig: 'spring-boot-camel-swagger-ui')
+                openshiftDeploy(depCfg: 'spring-boot-camel-swagger-ui')
             }
         }
     }
