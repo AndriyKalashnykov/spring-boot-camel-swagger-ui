@@ -21,40 +21,30 @@ node('maven') {
 //    }
 
     stage('Init') {
-        steps {
-            sh '''
+        sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                 '''
-        }
     }
 
     stage('Checkout scm') {
-        steps {
-            echo 'checkout scm'
-            checkout scm
-        }
+        echo 'checkout scm'
+        checkout scm
     }
     stage('Build') {
-        steps {
-            echo 'build'
+        echo 'build'
 //    openshiftBuild(bldCfg: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
-            sh "mvn clean package"
-        }
+        sh "mvn clean package"
     }
 
     stage('Test') {
-        steps {
-            sh "mvn test"
-        }
+        sh "mvn test"
     }
 
     stage('Deploy') {
 //        sh "mvn fabric8:undeploy"
 //        sh "mvn fabric8:deploy -Popenshift -DskipTests"
-        steps {
-            echo 'deploy'
-            openshiftDeploy(depCfg: 'spring-boot-camel-swagger-ui')
-        }
+        echo 'deploy'
+        openshiftDeploy(depCfg: 'spring-boot-camel-swagger-ui')
     }
 }
