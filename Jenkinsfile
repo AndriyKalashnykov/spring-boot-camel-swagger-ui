@@ -9,7 +9,9 @@ def setupScript = null
 node('maven') {
     pipeline {
 
-        agent any
+        agent {
+            label 'maven'
+        }
 
         tools {
 //        maven 'Maven 3.3.9'
