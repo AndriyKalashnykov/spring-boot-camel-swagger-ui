@@ -3,14 +3,22 @@
 // https://github.com/openshift/jenkins-plugin
 // https://jenkins.io/blog/2017/02/07/declarative-maven-project/
 
+library identifier: "pipeline-library@master",
+        retriever: modernSCM(
+                [
+                        $class: "GitSCMSource",
+                        remote: "https://github.com/redhat-cop/pipeline-library.git"
+                ]
+        )
+
 @Library('github.com/fabric8io/fabric8-pipeline-library@master')
 def setupScript = null
 
-pipeline {
+node('maven') {
 
-    agent {
-        label 'maven'
-    }
+//    agent {
+//        label 'maven'
+//    }
 
     stages {
         stage('Init') {
