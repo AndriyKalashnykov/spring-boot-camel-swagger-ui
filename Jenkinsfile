@@ -1,6 +1,7 @@
 #!/usr/bin/groovy
 
 // https://github.com/openshift/jenkins-plugin
+// https://jenkins.io/blog/2017/02/07/declarative-maven-project/
 
 @Library('github.com/fabric8io/fabric8-pipeline-library@master')
 def setupScript = null
@@ -8,8 +9,21 @@ def setupScript = null
 pipeline {
 
     agent any
+    tools {
+        maven 'Maven 3.3.9'
+        jdk 'jdk8'
+    }
 
     stages {
+        stage ('Init') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+               }
+        }
+        
         stage('Checkout scm') {
             steps {
                 echo 'checkout scm'
