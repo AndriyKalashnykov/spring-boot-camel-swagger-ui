@@ -1,28 +1,38 @@
 #!/usr/bin/groovy
 
-@Library('github.com/fabric8io/fabric8-pipeline-library@master')
-mavenNode() {
+pipeline {
+
+    agent any
+
     stages {
         stage 'checkout scm' {
-            echo 'checkout scm'
-            checkout scm
+            steps {
+                echo 'checkout scm'
+                checkout scm
+            }
         }
         stage 'build' {
-
-            echo 'build'
+            steps {
+                echo 'build'
 //    openshiftBuild(buildConfig: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
-            sh "mvn clean package"
+                sh "mvn clean package"
+            }
         }
 
         stage("Test") {
-            sh "mvn test"
+            steps {
+                sh "mvn test"
+            }
         }
 
         stage 'deploy' {
 //        sh "mvn fabric8:undeploy"
 //        sh "mvn fabric8:deploy -Popenshift -DskipTests"
-            echo 'deploy'
-            openshiftDeploy(deploymentConfig: 'spring-boot-camel-swagger-ui')
+            steps {
+                echo 'deploy'
+                openshiftDeploy(deploymentConfig: 'spring-boot-camel-swagger-ui')
+            }
         }
     }
+
 }
