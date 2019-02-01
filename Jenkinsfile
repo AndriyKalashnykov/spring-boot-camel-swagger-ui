@@ -48,6 +48,10 @@ node('maven') {
         branch = tokens[2]
         echo 'account-org/repo/branch=' + org +'/'+ repo +'/'+ branch
 
+        def scmUrl = scm.getUserRemoteConfigs()[0].getUrl()
+        echo 'scmUrl = ${scmUrl}'
+        echo scm.getUserRemoteConfigs()
+
 //        env.PREVIOUS_BUILD_NUMBER = sh returnStdout: true, script: '''curl -sk ${BUILD_URL}/lastStableBuild/buildNumber'''
 //        PREVIOUS_BUILD_NUMBER = env.PREVIOUS_BUILD_NUMBER
 //        sh 'echo PREVIOUS_BUILD_NUMBER 1  = ${env.PREVIOUS_BUILD_NUMBER}'
