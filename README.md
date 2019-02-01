@@ -159,6 +159,7 @@ oc get pod/jenkins-1-rzdbd -o template --template "{{.metadata.name}} {{.status.
 oc get pod/jenkins-1-rzdbd -o json | python -c "import json, sys; data=json.loads(sys.stdin.read()); print(data['status']['podIP'])"
 
 oc get pod --selector app=jenkins -o template --template "{{.metadata.name}} {{.status.podIP}}{{'\n'}}"
+oc get pod --selector app=jenkins -o template --template "{{range .items}}{{.metadata.name}} {{.status.podIP}}{{'\n'}}{{end}}"
 
 oc explain pod
 oc --loglevel 7 get pod

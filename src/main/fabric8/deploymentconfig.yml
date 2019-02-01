@@ -35,7 +35,7 @@ spec:
         app: ${project.artifactId}
         provider: fabric8
         version: ${project.version}
-        group: c${project.groupId}
+        group: ${project.groupId}
     spec:
       containers:
       - env:
