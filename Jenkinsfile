@@ -41,8 +41,15 @@ node('maven') {
         echo "\u2600 BUILD_URL=${env.BUILD_URL}"
         echo "\u2600 JENKINS_URL=${env.JENKINS_URL}"
         echo "\u2600 GIT_URL=${env.GIT_URL}"
+        echo "\u2600 JOB_NAME=${env.JOB_NAME}"
         def workspace = pwd()
         echo "\u2600 workspace=${workspace}"
+
+        def ArtifactId = readMavenPom().getArtifactId()
+        def Version = readMavenPom().getVersion()
+
+        echo "\u2600 ArtifactId=${ArtifactId}"
+        echo "\u2600 Version=${Version}"
 
         tokens = "${env.JOB_NAME}".tokenize('/')
         org = tokens[0]
