@@ -20,6 +20,13 @@ https://github.com/jboss-fuse/application-templates/blob/master/quickstarts/kara
 # FUSE Karaf image
 https://access.redhat.com/containers/?tab=overview#/registry.access.redhat.com/fuse7/fuse-karaf-openshift
 
+# Kubernetes
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources
+
+# Openshift Cheatsheet
+https://gist.github.com/rafaeltuelho/111850b0db31106a4d12a186e1fbc53e
+https://github.com/t0ffel/origin-aggregated-logging_2/blob/e8aec6a5ece1fd51d8915e25e4953d4df04c5843/deployer/scripts/upgrade.sh
+
 This repository contains a demo of Spring Boot with Apache Camel and Swagger UI.
 
 * Spring Boot 1.5.16.RELEASE
@@ -153,7 +160,7 @@ force delete node
 -- 
 oc delete po/spring-boot-camel-swagger-ui-s2i-1-build --grace-period=0 --force=true --ignore-not-found=true
 
-pod ip ( https://kubernetes.io/docs/reference/kubectl/jsonpath )
+#####pod ip ( https://kubernetes.io/docs/reference/kubectl/jsonpath )
 --
 
 oc get pods --selector app=spring-boot-camel-swagger-ui -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.podIP}{'\n'}{end}"
@@ -163,9 +170,13 @@ oc get pod/jenkins-1-rzdbd -o template --template "{{.metadata.name}} {{.status.
 oc get pod/spring-boot-camel-swagger-ui-4-4jdc4 -o template --template "{{.metadata.name}} {{.status.podIP}}{{'\n'}}"
 oc get pod/jenkins-1-rzdbd -o json | python -c "import json, sys; data=json.loads(sys.stdin.read()); print(data['status']['podIP'])"
 
-pod start time
---
+#####Pod start time
+
 oc get pods -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.startTime}{'\n'}{end}"
+
+#####List pods Sorted by Restart Count
+
+kubectl get pods --sort-by='.status.containerStatuses[0].restartCount'
 
 
 oc explain pod
@@ -173,8 +184,8 @@ oc --loglevel 7 get pod
 oc --loglevel 9999 get pod
 oc get pods -o wide
 
-pods on a node
---
+#####pods on a node
+
 oc adm manage-node node --list-pods
 
 fabric8
@@ -184,13 +195,21 @@ oc new-app fuse7/spring-boot-camel-swagger-ui~https://github.com/AndriyKalashnyk
 
 oc new-app fabric8/s2i-java:2.1~https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui#master
 
-Create service/routes
+service/routes
 --
 oc get services -o json
 oc get endpoints -o json
 oc explain route.spec.port
 
 oc patch route/spring-boot-camel-swagger-ui -p '{"spec":{"port":{"targetPort":8080}}}'
+
+#### deployconfig
+
+oc scale dc/nodejs-ex --replicas=1
+
+oc get dc/nodejs-ex -o jsonpath='{.spec.replicas}'
+oc patch dc/nodejs-ex -p="{ \"spec\": { \"replicas\": 2}}"
+oc patch dc nodejs-ex -p="{ \"spec\": { \"strategy\": { \"type\": \"Recreate\" }}}"
 
 oc expose svc spring-boot-camel-swagger-ui --port=8081
 WARNING] F8: No such generated manifest file C:\projects\spring-boot-camel-swagger-ui-github\target\classes\META-INF\fabric8\openshift.yml for this project so ignoring
