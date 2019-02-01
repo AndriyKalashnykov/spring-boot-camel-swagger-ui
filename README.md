@@ -153,6 +153,10 @@ force delete node
 -- 
 oc delete po/spring-boot-camel-swagger-ui-s2i-1-build --grace-period=0 --force=true --ignore-not-found=true
 
+pod ip
+--
+oc get pod/jenkins-1-rzdbd -o json | python -c "import json, sys; data=json.loads(sys.stdin.read()); print(data['status']['podIP'])"
+
 oc explain pod
 oc --loglevel 7 get pod
 oc --loglevel 9999 get pod

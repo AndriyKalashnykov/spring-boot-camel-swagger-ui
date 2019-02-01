@@ -1,0 +1,232 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "annotations": {
+            "kubernetes.io/limit-ranger": "LimitRanger plugin set: cpu request for container jenkins; cpu limit for container jenkins",
+            "openshift.io/deployment-config.latest-version": "1",
+            "openshift.io/deployment-config.name": "jenkins",
+            "openshift.io/deployment.name": "jenkins-1",
+            "openshift.io/generated-by": "OpenShiftNewApp",
+            "openshift.io/scc": "restricted"
+        },
+        "creationTimestamp": "2019-02-01T14:32:06Z",
+        "generateName": "jenkins-1-",
+        "labels": {
+            "deployment": "jenkins-1",
+            "deploymentconfig": "jenkins",
+            "name": "jenkins"
+        },
+        "name": "jenkins-1-rzdbd",
+        "namespace": "fuse7",
+        "ownerReferences": [
+            {
+                "apiVersion": "v1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "ReplicationController",
+                "name": "jenkins-1",
+                "uid": "24a1aefb-262e-11e9-8234-02fe3a6cfaba"
+            }
+        ],
+        "resourceVersion": "214908481",
+        "selfLink": "/api/v1/namespaces/fuse7/pods/jenkins-1-rzdbd",
+        "uid": "264f9a89-262e-11e9-98a4-02e0bae989b4"
+    },
+    "spec": {
+        "containers": [
+            {
+                "env": [
+                    {
+                        "name": "OPENSHIFT_ENABLE_OAUTH",
+                        "value": "true"
+                    },
+                    {
+                        "name": "OPENSHIFT_ENABLE_REDIRECT_PROMPT",
+                        "value": "true"
+                    },
+                    {
+                        "name": "DISABLE_ADMINISTRATIVE_MONITORS",
+                        "value": "true"
+                    },
+                    {
+                        "name": "KUBERNETES_MASTER",
+                        "value": "https://kubernetes.default:443"
+                    },
+                    {
+                        "name": "KUBERNETES_TRUST_CERTIFICATES",
+                        "value": "true"
+                    },
+                    {
+                        "name": "JENKINS_SERVICE_NAME",
+                        "value": "jenkins"
+                    },
+                    {
+                        "name": "JNLP_SERVICE_NAME",
+                        "value": "jenkins-jnlp"
+                    },
+                    {
+                        "name": "ENABLE_FATAL_ERROR_LOG_FILE",
+                        "value": "false"
+                    }
+                ],
+                "image": "docker-registry.default.svc:5000/openshift/jenkins@sha256:6c6a437e1394d3d8b5a7bdfb35c4146190e37eb9008c5d8ec66e77a5a3f40b74",
+                "imagePullPolicy": "Always",
+                "livenessProbe": {
+                    "failureThreshold": 2,
+                    "httpGet": {
+                        "path": "/login",
+                        "port": 8080,
+                        "scheme": "HTTP"
+                    },
+                    "initialDelaySeconds": 420,
+                    "periodSeconds": 360,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 240
+                },
+                "name": "jenkins",
+                "readinessProbe": {
+                    "failureThreshold": 3,
+                    "httpGet": {
+                        "path": "/login",
+                        "port": 8080,
+                        "scheme": "HTTP"
+                    },
+                    "initialDelaySeconds": 3,
+                    "periodSeconds": 10,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 240
+                },
+                "resources": {
+                    "limits": {
+                        "cpu": "1",
+                        "memory": "512Mi"
+                    },
+                    "requests": {
+                        "cpu": "30m",
+                        "memory": "409Mi"
+                    }
+                },
+                "securityContext": {
+                    "capabilities": {
+                        "drop": [
+                            "KILL",
+                            "MKNOD",
+                            "NET_RAW",
+                            "SETGID",
+                            "SETUID"
+                        ]
+                    },
+                    "privileged": false,
+                    "runAsUser": 1138230000
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/lib/jenkins",
+                        "name": "jenkins-data"
+                    },
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "jenkins-token-s7nl5",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "imagePullSecrets": [
+            {
+                "name": "jenkins-dockercfg-khh5s"
+            }
+        ],
+        "nodeName": "ip-172-31-63-222.ec2.internal",
+        "nodeSelector": {
+            "type": "compute"
+        },
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {
+            "fsGroup": 1138230000,
+            "seLinuxOptions": {
+                "level": "s0:c372,c109"
+            }
+        },
+        "serviceAccount": "jenkins",
+        "serviceAccountName": "jenkins",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoSchedule",
+                "key": "node.kubernetes.io/memory-pressure",
+                "operator": "Exists"
+            }
+        ],
+        "volumes": [
+            {
+                "name": "jenkins-data",
+                "persistentVolumeClaim": {
+                    "claimName": "jenkins"
+                }
+            },
+            {
+                "name": "jenkins-token-s7nl5",
+                "secret": {
+                    "defaultMode": 420,
+                    "secretName": "jenkins-token-s7nl5"
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-02-01T14:32:06Z",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-02-01T14:33:43Z",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": null,
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-02-01T14:32:06Z",
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "docker://2252000bf6dffa5ae27e0aa766e5cc6b948d0d465ceadf2169247c5272390f11",
+                "image": "docker-registry.default.svc:5000/openshift/jenkins@sha256:6c6a437e1394d3d8b5a7bdfb35c4146190e37eb9008c5d8ec66e77a5a3f40b74",
+                "imageID": "docker-pullable://docker-registry.default.svc:5000/openshift/jenkins@sha256:6c6a437e1394d3d8b5a7bdfb35c4146190e37eb9008c5d8ec66e77a5a3f40b74",
+                "lastState": {},
+                "name": "jenkins",
+                "ready": true,
+                "restartCount": 0,
+                "state": {
+                    "running": {
+                        "startedAt": "2019-02-01T14:32:40Z"
+                    }
+                }
+            }
+        ],
+        "hostIP": "172.31.63.222",
+        "phase": "Running",
+        "podIP": "10.129.14.40",
+        "qosClass": "Burstable",
+        "startTime": "2019-02-01T14:32:06Z"
+    }
+}
