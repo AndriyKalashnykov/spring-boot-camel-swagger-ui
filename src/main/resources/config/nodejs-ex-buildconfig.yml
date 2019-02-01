@@ -1,0 +1,45 @@
+apiVersion: v1
+items:
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: 2019-01-31T16:08:53Z
+    labels:
+      app: nodejs-ex-pipeline
+    name: nodejs-ex-pipeline
+    namespace: fuse7
+    resourceVersion: "214434635"
+    selfLink: /apis/build.openshift.io/v1/namespaces/fuse7/buildconfigs/nodejs-ex-pipeline
+    uid: 8144cc9c-2572-11e9-98a4-02e0bae989b4
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output: {}
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      contextDir: openshift/pipeline
+      git:
+        uri: https://github.com/sclorg/nodejs-ex
+      type: Git
+    strategy:
+      jenkinsPipelineStrategy: {}
+      type: JenkinsPipeline
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - github:
+        secret: aayuxRcq_5ab6QcsOeKm
+      type: GitHub
+    - generic:
+        secret: sQwH414v9wCpJY7gh8G5
+      type: Generic
+    - type: ConfigChange
+  status:
+    lastVersion: 1
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

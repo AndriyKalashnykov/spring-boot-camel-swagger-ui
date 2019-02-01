@@ -4,14 +4,14 @@ kind: Route
 metadata:
   labels:
     expose: "true"
-    app: spring-boot-camel-swagger-ui
+    app: ${project.artifactId}
     provider: fabric8
     version: 0.0.1-SNAPSHOT
     group: com.redhat
-  name: spring-boot-camel-swagger-ui
+  name: ${project.artifactId}
 spec:
   port:
     targetPort: 8080
   to:
     kind: Service
-    name: spring-boot-camel-swagger-ui
+    name: ${project.artifactId}
