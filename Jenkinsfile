@@ -79,6 +79,7 @@ node('maven') {
 
     stage('Integrations Test') {
         echo 'Integrations Test'
+        sh "mvn test"
     }
 
     stage('Deploy') {
