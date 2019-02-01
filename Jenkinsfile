@@ -27,9 +27,8 @@ node('maven') {
                     echo "M2_HOME = ${M2_HOME}"
                     echo "JAVA_HOME = ${JAVA_HOME}"
                     
-                    sh 'java -version'
                     sh 'mvn -version'
-                    
+                    sh 'java -version'
                 '''
     }
 
