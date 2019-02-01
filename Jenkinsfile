@@ -31,7 +31,8 @@ node('maven') {
         sh "java -version"
         sh "mvn -version"
 
-        env.PREVIOUS_BUILD_NUMBER = sh returnStdout: true, script: '''curl -sk ${JOB_URL}/lastStableBuild/buildNumber'''
+        echo "\u2600 BUILD_URL=${env.BUILD_URL}"
+        env.PREVIOUS_BUILD_NUMBER = sh returnStdout: true, script: '''curl -sk ${BUILD_URL}/lastStableBuild/buildNumber'''
         PREVIOUS_BUILD_NUMBER = env.PREVIOUS_BUILD_NUMBER
 
         sh 'echo PREVIOUS_BUILD_NUMBER 1  = ${env.PREVIOUS_BUILD_NUMBER}'
