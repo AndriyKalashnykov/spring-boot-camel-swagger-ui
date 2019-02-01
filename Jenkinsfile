@@ -39,12 +39,22 @@ node('maven') {
         sh "mvn -version"
 
         echo "\u2600 BUILD_URL=${env.BUILD_URL}"
-        env.PREVIOUS_BUILD_NUMBER = sh returnStdout: true, script: '''curl -sk ${BUILD_URL}/lastStableBuild/buildNumber'''
-        PREVIOUS_BUILD_NUMBER = env.PREVIOUS_BUILD_NUMBER
+        echo "\u2600 JENKINS_URL=${env.JENKINS_URL}"
+        echo "\u2600 GIT_URL=${env.GIT_URL}"
+        def workspace = pwd()
+        echo "\u2600 workspace=${workspace}"
 
-        sh 'echo PREVIOUS_BUILD_NUMBER 1  = ${env.PREVIOUS_BUILD_NUMBER}'
-        sh 'echo PREVIOUS_BUILD_NUMBER 2 = ${PREVIOUS_BUILD_NUMBER}'
-        echo 'PREVIOUS_BUILD_NUMBER 3 = ${PREVIOUS_BUILD_NUMBER}'
+        tokens = "${env.JOB_NAME}".tokenize('/')
+        org = tokens[0]
+        repo = tokens[1]
+        branch = tokens[2]
+        echo 'account-org/repo/branch=' + org +'/'+ repo +'/'+ branch
+
+//        env.PREVIOUS_BUILD_NUMBER = sh returnStdout: true, script: '''curl -sk ${BUILD_URL}/lastStableBuild/buildNumber'''
+//        PREVIOUS_BUILD_NUMBER = env.PREVIOUS_BUILD_NUMBER
+//        sh 'echo PREVIOUS_BUILD_NUMBER 1  = ${env.PREVIOUS_BUILD_NUMBER}'
+//        sh 'echo PREVIOUS_BUILD_NUMBER 2 = ${PREVIOUS_BUILD_NUMBER}'
+//        echo 'PREVIOUS_BUILD_NUMBER 3 = ${PREVIOUS_BUILD_NUMBER}'
     }
 
     stage('Checkout SCM') {
