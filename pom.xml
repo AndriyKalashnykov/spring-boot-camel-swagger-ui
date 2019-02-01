@@ -20,6 +20,7 @@
         <camel.version>2.21.0</camel.version>
         <fabric8.version>3.0.11.fuse-720027-redhat-00001</fabric8.version>
         <!--<fabric8.maven.plugin.version>3.5.33.fuse-720026-redhat-00001</fabric8.maven.plugin.version>-->
+        <fuse.version>7.2.0.fuse-720020-redhat-00001</fuse.version>
         <fabric8.maven.plugin.version>3.5.34</fabric8.maven.plugin.version>
         <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
@@ -50,15 +51,46 @@
         </repository>
     </repositories>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>redhat-ga-repository</id>
+            <url>https://maven.repository.redhat.com/ga</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>redhat-ea-repository</id>
+            <url>https://maven.repository.redhat.com/earlyaccess/all</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.fabric8</groupId>
-                <artifactId>fabric8-project-bom-camel-spring-boot</artifactId>
-                <version>${fabric8.version}</version>
+                <groupId>org.jboss.redhat-fuse</groupId>
+                <artifactId>fuse-springboot-bom</artifactId>
+                <version>${fuse.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!--<dependency>-->
+                <!--<groupId>io.fabric8</groupId>-->
+                <!--<artifactId>fabric8-project-bom-camel-spring-boot</artifactId>-->
+                <!--<version>${fabric8.version}</version>-->
+                <!--<type>pom</type>-->
+                <!--<scope>import</scope>-->
+            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
 
@@ -106,7 +138,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-spring-boot-starter</artifactId>
-            <version>${camel.version}</version>
+            <!--<version>${camel.version}</version>-->
             <exclusions>
                 <exclusion>
                     <artifactId>spring-boot-starter</artifactId>
@@ -118,7 +150,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-consul-starter</artifactId>
-            <version>${camel.version}</version>
+            <!--<version>${camel.version}</version>-->
             <exclusions>
                 <exclusion>
                     <artifactId>spring-boot-starter</artifactId>
@@ -129,7 +161,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-servlet</artifactId>
-            <version>${camel.version}</version>
+            <!--<version>${camel.version}</version>-->
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
@@ -139,7 +171,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-jackson-starter</artifactId>
-            <version>${camel.version}</version>
+            <!--<version>${camel.version}</version>-->
             <exclusions>
                 <exclusion>
                     <artifactId>spring-boot-starter</artifactId>

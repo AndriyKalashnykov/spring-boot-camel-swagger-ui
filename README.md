@@ -196,6 +196,10 @@ image stream of particular image
 --
 oc get is -n openshift | grep ^redhat-openjdk | cut -f1 -d " "
 
+Templates
+---
+
+oc get template -n openshift
 
 
 NodeJS example
