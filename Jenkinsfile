@@ -13,6 +13,7 @@ library identifier: "pipeline-library@master",
 
 @Library('github.com/fabric8io/fabric8-pipeline-library@master')
 def setupScript = null
+def PREVIOUS_BUILD_NUMBER = null
 
 node('maven') {
 
@@ -29,6 +30,13 @@ node('maven') {
                 '''
         sh "java -version"
         sh "mvn -version"
+
+        env.PREVIOUS_BUILD_NUMBER = sh returnStdout: true, script: '''curl -sk ${JOB_URL}/lastStableBuild/buildNumber'''
+        PREVIOUS_BUILD_NUMBER = env.PREVIOUS_BUILD_NUMBER
+
+        sh 'echo PREVIOUS_BUILD_NUMBER 1  = ${env.PREVIOUS_BUILD_NUMBER}'
+        sh 'echo PREVIOUS_BUILD_NUMBER 2 = ${PREVIOUS_BUILD_NUMBER}'
+        echo 'PREVIOUS_BUILD_NUMBER 3 = ${PREVIOUS_BUILD_NUMBER}'
     }
 
     stage('Checkout SCM') {
