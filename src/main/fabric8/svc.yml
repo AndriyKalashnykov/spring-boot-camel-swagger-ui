@@ -10,11 +10,11 @@ metadata:
     prometheus.io/port: "9779"
   labels:
     expose: "true"
-    app: spring-boot-camel-swagger-ui
+    app: ${project.artifactId}
     provider: fabric8
-    version: 0.0.1-SNAPSHOT
+    version: ${project.version}
     group: com.redhat
-  name: spring-boot-camel-swagger-ui
+  name: ${project.artifactId}
 spec:
   ports:
   - name: http
@@ -26,6 +26,6 @@ spec:
     protocol: TCP
     targetPort: 8081
   selector:
-    app: spring-boot-camel-swagger-ui
+    app: ${project.artifactId}
     provider: fabric8
     group: com.redhat

@@ -6,7 +6,7 @@ metadata:
     expose: "true"
     app: ${project.artifactId}
     provider: fabric8
-    version: 0.0.1-SNAPSHOT
+    version: ${project.version}
     group: com.redhat
   name: ${project.artifactId}
 spec:

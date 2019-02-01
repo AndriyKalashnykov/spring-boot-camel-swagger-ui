@@ -2,8 +2,8 @@ apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
   labels:
-    app: spring-boot-camel-swagger-ui
-  name: spring-boot-camel-swagger-ui
+    app: ${project.artifactId}
+  name: ${project.artifactId}
   namespace: fuse7
 spec:
   failedBuildsHistoryLimit: 5

@@ -6,18 +6,18 @@ metadata:
     fabric8.io/git-commit: 17e38b8316f831fe3cfeff96cc2acc2ee89243d2
     fabric8.io/iconUrl: img/icons/camel.svg
     fabric8.io/git-branch: master
-    fabric8.io/metrics-path: dashboard/file/camel-routes.json/?var-project=spring-boot-camel-swagger-ui&var-version=0.0.1-SNAPSHOT
+    fabric8.io/metrics-path: dashboard/file/camel-routes.json/?var-project=spring-boot-camel-swagger-ui&var-version=${project.version}
   labels:
-    app: spring-boot-camel-swagger-ui
+    app: ${project.artifactId}
     provider: fabric8
-    version: 0.0.1-SNAPSHOT
+    version: ${project.version}
     group: com.redhat
-  name: spring-boot-camel-swagger-ui
+  name: ${project.artifactId}
 spec:
   replicas: 2
   revisionHistoryLimit: 2
   selector:
-    app: spring-boot-camel-swagger-ui
+    app: ${project.artifactId}
     provider: fabric8
     group: com.redhat
   strategy:
@@ -30,11 +30,11 @@ spec:
         fabric8.io/git-commit: 17e38b8316f831fe3cfeff96cc2acc2ee89243d2
         fabric8.io/iconUrl: img/icons/camel.svg
         fabric8.io/git-branch: master
-        fabric8.io/metrics-path: dashboard/file/camel-routes.json/?var-project=spring-boot-camel-swagger-ui&var-version=0.0.1-SNAPSHOT
+        fabric8.io/metrics-path: dashboard/file/camel-routes.json/?var-project=spring-boot-camel-swagger-ui&var-version=${project.version}
       labels:
-        app: spring-boot-camel-swagger-ui
+        app: ${project.artifactId}
         provider: fabric8
-        version: 0.0.1-SNAPSHOT
+        version: ${project.version}
         group: com.redhat
     spec:
       containers:
@@ -43,7 +43,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: spring-boot-camel-swagger-ui:latest
+        image: ${project.artifactId}:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -81,5 +81,5 @@ spec:
       - spring-boot
       from:
         kind: ImageStreamTag
-        name: spring-boot-camel-swagger-ui:latest
+        name: ${project.artifactId}:latest
     type: ImageChange
