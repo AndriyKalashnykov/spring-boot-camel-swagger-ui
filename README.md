@@ -26,6 +26,10 @@ This repository contains a demo of Spring Boot with Apache Camel and Swagger UI.
 * Apache Camel 2.21.0
 * Swagger UI 2.2.8
 
+Latest OC command
+---
+    https://github.com/openshift/origin/releases/latest
+
 Docker
 ---
 docker image rm spring-boot-camel-swagger-ui
@@ -215,3 +219,8 @@ oc get svc
 oc expose svc/nodejs-ex
 
 oc delete all --selector app=nodejs-ex
+
+New project
+---
+
+mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -DarchetypeCatalog=https://maven.repository.redhat.com/ga/io/fabric8/archetypes/archetypes-catalog/2.2.0.fuse-720018-redhat-00001/archetypes-catalog-2.2.0.fuse-720018-redhat-00001-archetype-catalog.xml -DarchetypeGroupId=org.jboss.fuse.fis.archetypes -DarchetypeArtifactId=spring-boot-camel-xml-archetype -DarchetypeVersion=2.2.0.fuse-720018-redhat-00001
