@@ -21,6 +21,7 @@ node('maven') {
 //    }
 
     stage('Init') {
+        echo 'Init'
         sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
@@ -28,12 +29,12 @@ node('maven') {
                 '''
     }
 
-    stage('Checkout scm') {
-        echo 'checkout scm'
+    stage('Checkout SCM') {
+        echo 'Checkout SCM'
         checkout scm
     }
     stage('Build') {
-        echo 'build'
+        echo 'Build'
 //    openshiftBuild(bldCfg: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
         sh "mvn clean package"
     }
