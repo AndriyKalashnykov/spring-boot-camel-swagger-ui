@@ -2,8 +2,11 @@
 
 import hudson.model.*
 
-// https://github.com/openshift/jenkins-plugin
+// https://jenkins.io/doc/book/pipeline/jenkinsfile/
 // https://jenkins.io/blog/2017/02/07/declarative-maven-project/
+// https://github.com/openshift/jenkins-plugin
+// https://github.com/openshift/jenkins-client-plugin
+// https://wilsonmar.github.io/jenkins2-pipeline/
 
 library identifier: "pipeline-library@master",
         retriever: modernSCM(
