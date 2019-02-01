@@ -1,0 +1,354 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "annotations": {
+            "kubernetes.io/limit-ranger": "LimitRanger plugin set: cpu, memory request for container sti-build; cpu, memory limit for container sti-build; cpu, memory request for init container git-clone; cpu, memory limit for init container git-clone; cpu, memory request for init container manage-dockerfile; cpu, memory limit for init container manage-dockerfile",
+            "openshift.io/build.name": "spring-boot-camel-swagger-ui-s2i-1",
+            "openshift.io/scc": "privileged"
+        },
+        "creationTimestamp": "2019-02-01T14:44:02Z",
+        "labels": {
+            "openshift.io/build.name": "spring-boot-camel-swagger-ui-s2i-1"
+        },
+        "name": "spring-boot-camel-swagger-ui-s2i-1-build",
+        "namespace": "fuse7",
+        "ownerReferences": [
+            {
+                "apiVersion": "build.openshift.io/v1",
+                "controller": true,
+                "kind": "Build",
+                "name": "spring-boot-camel-swagger-ui-s2i-1",
+                "uid": "d13e0416-262f-11e9-98a4-02e0bae989b4"
+            }
+        ],
+        "resourceVersion": "214912321",
+        "selfLink": "/api/v1/namespaces/fuse7/pods/spring-boot-camel-swagger-ui-s2i-1-build",
+        "uid": "d144de91-262f-11e9-8234-02fe3a6cfaba"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 3600,
+        "containers": [
+            {
+                "args": [
+                    "--loglevel=0"
+                ],
+                "command": [
+                    "openshift-sti-build"
+                ],
+                "env": [
+                    {
+                        "name": "BUILD",
+                        "value": "{\"kind\":\"Build\",\"apiVersion\":\"build.openshift.io/v1\",\"metadata\":{\"name\":\"spring-boot-camel-swagger-ui-s2i-1\",\"namespace\":\"fuse7\",\"selfLink\":\"/apis/build.openshift.io/v1/namespaces/fuse7/builds/spring-boot-camel-swagger-ui-s2i-1\",\"uid\":\"d13e0416-262f-11e9-98a4-02e0bae989b4\",\"resourceVersion\":\"214912005\",\"creationTimestamp\":\"2019-02-01T14:44:02Z\",\"labels\":{\"app\":\"spring-boot-camel-swagger-ui\",\"buildconfig\":\"spring-boot-camel-swagger-ui-s2i\",\"group\":\"com.redhat\",\"openshift.io/build-config.name\":\"spring-boot-camel-swagger-ui-s2i\",\"openshift.io/build.start-policy\":\"Serial\",\"provider\":\"fabric8\",\"version\":\"0.0.1-SNAPSHOT\"},\"annotations\":{\"openshift.io/build-config.name\":\"spring-boot-camel-swagger-ui-s2i\",\"openshift.io/build.number\":\"1\"},\"ownerReferences\":[{\"apiVersion\":\"build.openshift.io/v1\",\"kind\":\"BuildConfig\",\"name\":\"spring-boot-camel-swagger-ui-s2i\",\"uid\":\"d096b850-262f-11e9-98a4-02e0bae989b4\",\"controller\":true}]},\"spec\":{\"serviceAccount\":\"builder\",\"source\":{\"type\":\"Binary\",\"binary\":{}},\"strategy\":{\"type\":\"Source\",\"sourceStrategy\":{\"from\":{\"kind\":\"DockerImage\",\"name\":\"fabric8/s2i-java:2.1\"},\"forcePull\":true}},\"output\":{\"to\":{\"kind\":\"DockerImage\",\"name\":\"docker-registry.default.svc:5000/fuse7/spring-boot-camel-swagger-ui:latest\"},\"pushSecret\":{\"name\":\"builder-dockercfg-d595f\"}},\"resources\":{},\"postCommit\":{},\"nodeSelector\":{},\"triggeredBy\":null},\"status\":{\"phase\":\"New\",\"outputDockerImageReference\":\"docker-registry.default.svc:5000/fuse7/spring-boot-camel-swagger-ui:latest\",\"config\":{\"kind\":\"BuildConfig\",\"namespace\":\"fuse7\",\"name\":\"spring-boot-camel-swagger-ui-s2i\"},\"output\":{}}}\n"
+                    },
+                    {
+                        "name": "ALLOWED_UIDS",
+                        "value": "1-"
+                    },
+                    {
+                        "name": "DROP_CAPS",
+                        "value": "KILL,MKNOD,SETGID,SETUID"
+                    },
+                    {
+                        "name": "PUSH_DOCKERCFG_PATH",
+                        "value": "/var/run/secrets/openshift.io/push"
+                    }
+                ],
+                "image": "registry.reg-aws.openshift.com:443/openshift3/ose-docker-builder:v3.11.43",
+                "imagePullPolicy": "Always",
+                "name": "sti-build",
+                "resources": {
+                    "limits": {
+                        "cpu": "1",
+                        "memory": "512Mi"
+                    },
+                    "requests": {
+                        "cpu": "30m",
+                        "memory": "409Mi"
+                    }
+                },
+                "securityContext": {
+                    "privileged": true
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "FallbackToLogsOnError",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/tmp/build",
+                        "name": "buildworkdir"
+                    },
+                    {
+                        "mountPath": "/var/run/docker.sock",
+                        "name": "docker-socket"
+                    },
+                    {
+                        "mountPath": "/var/run/crio/crio.sock",
+                        "name": "crio-socket"
+                    },
+                    {
+                        "mountPath": "/var/run/secrets/openshift.io/push",
+                        "name": "builder-dockercfg-d595f-push",
+                        "readOnly": true
+                    },
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "builder-token-npd6q",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "imagePullSecrets": [
+            {
+                "name": "builder-dockercfg-d595f"
+            }
+        ],
+        "initContainers": [
+            {
+                "args": [
+                    "--loglevel=0"
+                ],
+                "command": [
+                    "openshift-git-clone"
+                ],
+                "env": [
+                    {
+                        "name": "BUILD",
+                        "value": "{\"kind\":\"Build\",\"apiVersion\":\"build.openshift.io/v1\",\"metadata\":{\"name\":\"spring-boot-camel-swagger-ui-s2i-1\",\"namespace\":\"fuse7\",\"selfLink\":\"/apis/build.openshift.io/v1/namespaces/fuse7/builds/spring-boot-camel-swagger-ui-s2i-1\",\"uid\":\"d13e0416-262f-11e9-98a4-02e0bae989b4\",\"resourceVersion\":\"214912005\",\"creationTimestamp\":\"2019-02-01T14:44:02Z\",\"labels\":{\"app\":\"spring-boot-camel-swagger-ui\",\"buildconfig\":\"spring-boot-camel-swagger-ui-s2i\",\"group\":\"com.redhat\",\"openshift.io/build-config.name\":\"spring-boot-camel-swagger-ui-s2i\",\"openshift.io/build.start-policy\":\"Serial\",\"provider\":\"fabric8\",\"version\":\"0.0.1-SNAPSHOT\"},\"annotations\":{\"openshift.io/build-config.name\":\"spring-boot-camel-swagger-ui-s2i\",\"openshift.io/build.number\":\"1\"},\"ownerReferences\":[{\"apiVersion\":\"build.openshift.io/v1\",\"kind\":\"BuildConfig\",\"name\":\"spring-boot-camel-swagger-ui-s2i\",\"uid\":\"d096b850-262f-11e9-98a4-02e0bae989b4\",\"controller\":true}]},\"spec\":{\"serviceAccount\":\"builder\",\"source\":{\"type\":\"Binary\",\"binary\":{}},\"strategy\":{\"type\":\"Source\",\"sourceStrategy\":{\"from\":{\"kind\":\"DockerImage\",\"name\":\"fabric8/s2i-java:2.1\"},\"forcePull\":true}},\"output\":{\"to\":{\"kind\":\"DockerImage\",\"name\":\"docker-registry.default.svc:5000/fuse7/spring-boot-camel-swagger-ui:latest\"},\"pushSecret\":{\"name\":\"builder-dockercfg-d595f\"}},\"resources\":{},\"postCommit\":{},\"nodeSelector\":{},\"triggeredBy\":null},\"status\":{\"phase\":\"New\",\"outputDockerImageReference\":\"docker-registry.default.svc:5000/fuse7/spring-boot-camel-swagger-ui:latest\",\"config\":{\"kind\":\"BuildConfig\",\"namespace\":\"fuse7\",\"name\":\"spring-boot-camel-swagger-ui-s2i\"},\"output\":{}}}\n"
+                    },
+                    {
+                        "name": "ALLOWED_UIDS",
+                        "value": "1-"
+                    },
+                    {
+                        "name": "DROP_CAPS",
+                        "value": "KILL,MKNOD,SETGID,SETUID"
+                    }
+                ],
+                "image": "registry.reg-aws.openshift.com:443/openshift3/ose-docker-builder:v3.11.43",
+                "imagePullPolicy": "Always",
+                "name": "git-clone",
+                "resources": {
+                    "limits": {
+                        "cpu": "1",
+                        "memory": "512Mi"
+                    },
+                    "requests": {
+                        "cpu": "30m",
+                        "memory": "409Mi"
+                    }
+                },
+                "stdin": true,
+                "stdinOnce": true,
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "FallbackToLogsOnError",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/tmp/build",
+                        "name": "buildworkdir"
+                    },
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "builder-token-npd6q",
+                        "readOnly": true
+                    }
+                ]
+            },
+            {
+                "args": [
+                    "--loglevel=0"
+                ],
+                "command": [
+                    "openshift-manage-dockerfile"
+                ],
+                "env": [
+                    {
+                        "name": "BUILD",
+                        "value": "{\"kind\":\"Build\",\"apiVersion\":\"build.openshift.io/v1\",\"metadata\":{\"name\":\"spring-boot-camel-swagger-ui-s2i-1\",\"namespace\":\"fuse7\",\"selfLink\":\"/apis/build.openshift.io/v1/namespaces/fuse7/builds/spring-boot-camel-swagger-ui-s2i-1\",\"uid\":\"d13e0416-262f-11e9-98a4-02e0bae989b4\",\"resourceVersion\":\"214912005\",\"creationTimestamp\":\"2019-02-01T14:44:02Z\",\"labels\":{\"app\":\"spring-boot-camel-swagger-ui\",\"buildconfig\":\"spring-boot-camel-swagger-ui-s2i\",\"group\":\"com.redhat\",\"openshift.io/build-config.name\":\"spring-boot-camel-swagger-ui-s2i\",\"openshift.io/build.start-policy\":\"Serial\",\"provider\":\"fabric8\",\"version\":\"0.0.1-SNAPSHOT\"},\"annotations\":{\"openshift.io/build-config.name\":\"spring-boot-camel-swagger-ui-s2i\",\"openshift.io/build.number\":\"1\"},\"ownerReferences\":[{\"apiVersion\":\"build.openshift.io/v1\",\"kind\":\"BuildConfig\",\"name\":\"spring-boot-camel-swagger-ui-s2i\",\"uid\":\"d096b850-262f-11e9-98a4-02e0bae989b4\",\"controller\":true}]},\"spec\":{\"serviceAccount\":\"builder\",\"source\":{\"type\":\"Binary\",\"binary\":{}},\"strategy\":{\"type\":\"Source\",\"sourceStrategy\":{\"from\":{\"kind\":\"DockerImage\",\"name\":\"fabric8/s2i-java:2.1\"},\"forcePull\":true}},\"output\":{\"to\":{\"kind\":\"DockerImage\",\"name\":\"docker-registry.default.svc:5000/fuse7/spring-boot-camel-swagger-ui:latest\"},\"pushSecret\":{\"name\":\"builder-dockercfg-d595f\"}},\"resources\":{},\"postCommit\":{},\"nodeSelector\":{},\"triggeredBy\":null},\"status\":{\"phase\":\"New\",\"outputDockerImageReference\":\"docker-registry.default.svc:5000/fuse7/spring-boot-camel-swagger-ui:latest\",\"config\":{\"kind\":\"BuildConfig\",\"namespace\":\"fuse7\",\"name\":\"spring-boot-camel-swagger-ui-s2i\"},\"output\":{}}}\n"
+                    },
+                    {
+                        "name": "ALLOWED_UIDS",
+                        "value": "1-"
+                    },
+                    {
+                        "name": "DROP_CAPS",
+                        "value": "KILL,MKNOD,SETGID,SETUID"
+                    }
+                ],
+                "image": "registry.reg-aws.openshift.com:443/openshift3/ose-docker-builder:v3.11.43",
+                "imagePullPolicy": "Always",
+                "name": "manage-dockerfile",
+                "resources": {
+                    "limits": {
+                        "cpu": "1",
+                        "memory": "512Mi"
+                    },
+                    "requests": {
+                        "cpu": "30m",
+                        "memory": "409Mi"
+                    }
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "FallbackToLogsOnError",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/tmp/build",
+                        "name": "buildworkdir"
+                    },
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "builder-token-npd6q",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "nodeName": "ip-172-31-61-215.ec2.internal",
+        "nodeSelector": {
+            "type": "compute"
+        },
+        "priority": 0,
+        "restartPolicy": "Never",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "builder",
+        "serviceAccountName": "builder",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoSchedule",
+                "key": "node.kubernetes.io/memory-pressure",
+                "operator": "Exists"
+            }
+        ],
+        "volumes": [
+            {
+                "emptyDir": {},
+                "name": "buildworkdir"
+            },
+            {
+                "hostPath": {
+                    "path": "/var/run/docker.sock",
+                    "type": ""
+                },
+                "name": "docker-socket"
+            },
+            {
+                "hostPath": {
+                    "path": "/var/run/crio/crio.sock",
+                    "type": ""
+                },
+                "name": "crio-socket"
+            },
+            {
+                "name": "builder-dockercfg-d595f-push",
+                "secret": {
+                    "defaultMode": 384,
+                    "secretName": "builder-dockercfg-d595f"
+                }
+            },
+            {
+                "name": "builder-token-npd6q",
+                "secret": {
+                    "defaultMode": 420,
+                    "secretName": "builder-token-npd6q"
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-02-01T14:44:42Z",
+                "reason": "PodCompleted",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-02-01T14:44:55Z",
+                "reason": "PodCompleted",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": null,
+                "reason": "PodCompleted",
+                "status": "False",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-02-01T14:44:02Z",
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "docker://f266e91204f8a73f6a2d9492a42d1b3535a01df1b96da110ba6a9d38a943fd2d",
+                "image": "registry.reg-aws.openshift.com:443/openshift3/ose-docker-builder:v3.11.43",
+                "imageID": "docker-pullable://registry.reg-aws.openshift.com:443/openshift3/ose-docker-builder@sha256:5443fd3f4aadec03f5ae0441150fedf3765bb576ae5d7ac65e81a03b5035d5d2",
+                "lastState": {},
+                "name": "sti-build",
+                "ready": false,
+                "restartCount": 0,
+                "state": {
+                    "terminated": {
+                        "containerID": "docker://f266e91204f8a73f6a2d9492a42d1b3535a01df1b96da110ba6a9d38a943fd2d",
+                        "exitCode": 0,
+                        "finishedAt": "2019-02-01T14:44:55Z",
+                        "reason": "Completed",
+                        "startedAt": "2019-02-01T14:44:43Z"
+                    }
+                }
+            }
+        ],
+        "hostIP": "172.31.61.215",
+        "initContainerStatuses": [
+            {
+                "containerID": "docker://adbf040d70d18a5f81567c7ff6b3f95d0b9064cc6758dd69449784712109d031",
+                "image": "registry.reg-aws.openshift.com:443/openshift3/ose-docker-builder:v3.11.43",
+                "imageID": "docker-pullable://registry.reg-aws.openshift.com:443/openshift3/ose-docker-builder@sha256:5443fd3f4aadec03f5ae0441150fedf3765bb576ae5d7ac65e81a03b5035d5d2",
+                "lastState": {},
+                "name": "git-clone",
+                "ready": true,
+                "restartCount": 0,
+                "state": {
+                    "terminated": {
+                        "containerID": "docker://adbf040d70d18a5f81567c7ff6b3f95d0b9064cc6758dd69449784712109d031",
+                        "exitCode": 0,
+                        "finishedAt": "2019-02-01T14:44:40Z",
+                        "reason": "Completed",
+                        "startedAt": "2019-02-01T14:44:05Z"
+                    }
+                }
+            },
+            {
+                "containerID": "docker://bc09b3a201c4c4554081790057353a33bb5cab9a56bc276d370e35a9996da627",
+                "image": "registry.reg-aws.openshift.com:443/openshift3/ose-docker-builder:v3.11.43",
+                "imageID": "docker-pullable://registry.reg-aws.openshift.com:443/openshift3/ose-docker-builder@sha256:5443fd3f4aadec03f5ae0441150fedf3765bb576ae5d7ac65e81a03b5035d5d2",
+                "lastState": {},
+                "name": "manage-dockerfile",
+                "ready": true,
+                "restartCount": 0,
+                "state": {
+                    "terminated": {
+                        "containerID": "docker://bc09b3a201c4c4554081790057353a33bb5cab9a56bc276d370e35a9996da627",
+                        "exitCode": 0,
+                        "finishedAt": "2019-02-01T14:44:42Z",
+                        "reason": "Completed",
+                        "startedAt": "2019-02-01T14:44:42Z"
+                    }
+                }
+            }
+        ],
+        "phase": "Succeeded",
+        "podIP": "10.131.22.23",
+        "qosClass": "Burstable",
+        "startTime": "2019-02-01T14:44:02Z"
+    }
+}

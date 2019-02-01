@@ -155,7 +155,10 @@ oc delete po/spring-boot-camel-swagger-ui-s2i-1-build --grace-period=0 --force=t
 
 pod ip
 --
+oc get pod/jenkins-1-rzdbd -o template --template "{{.metadata.name}} {{.status.podIP}}{{'\n'}}"
 oc get pod/jenkins-1-rzdbd -o json | python -c "import json, sys; data=json.loads(sys.stdin.read()); print(data['status']['podIP'])"
+
+oc get pod --selector app=jenkins -o template --template "{{.metadata.name}} {{.status.podIP}}{{'\n'}}"
 
 oc explain pod
 oc --loglevel 7 get pod
@@ -199,10 +202,13 @@ Image streams
 ---
 
 oc get is -n openshift
+oc describe is -n openshift fis-java-openshift 
 
 image stream of particular image
 --
 oc get is -n openshift | grep ^redhat-openjdk | cut -f1 -d " "
+
+
 
 Templates
 ---

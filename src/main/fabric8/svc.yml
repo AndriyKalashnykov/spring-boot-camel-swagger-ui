@@ -13,7 +13,7 @@ metadata:
     app: ${project.artifactId}
     provider: fabric8
     version: ${project.version}
-    group: com.redhat
+    group: ${project.groupId}
   name: ${project.artifactId}
 spec:
   ports:
@@ -28,4 +28,4 @@ spec:
   selector:
     app: ${project.artifactId}
     provider: fabric8
-    group: com.redhat
+    group: ${project.groupId}
