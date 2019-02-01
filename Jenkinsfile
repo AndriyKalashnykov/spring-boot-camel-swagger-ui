@@ -62,8 +62,8 @@ node('maven') {
 //        echo 'PREVIOUS_BUILD_NUMBER 3 = ${PREVIOUS_BUILD_NUMBER}'
     }
 
-    stage('Checkout SCM') {
-        echo 'Checkout SCM'
+    stage('Checkout') {
+        echo 'Checkout'
         checkout scm
     }
     stage('Build') {
@@ -72,8 +72,13 @@ node('maven') {
         sh "mvn clean package"
     }
 
-    stage('Test') {
+    stage('Unit Test') {
+        echo 'Unit Test'
         sh "mvn test"
+    }
+
+    stage('Integrations Test') {
+        echo 'Integrations Test'
     }
 
     stage('Deploy') {
