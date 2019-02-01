@@ -1,30 +1,24 @@
 #!/usr/bin/env groovy
 
-import hudson.model.*
-
 // https://jenkins.io/doc/book/pipeline/jenkinsfile/
 // https://jenkins.io/blog/2017/02/07/declarative-maven-project/
 // https://github.com/openshift/jenkins-plugin
 // https://github.com/openshift/jenkins-client-plugin
 // https://wilsonmar.github.io/jenkins2-pipeline/
 
-library identifier: "pipeline-library@master",
-        retriever: modernSCM(
-                [
-                        $class: "GitSCMSource",
-                        remote: "https://github.com/redhat-cop/pipeline-library.git"
-                ]
-        )
-
-@Library('github.com/fabric8io/fabric8-pipeline-library@master')
-def setupScript = null
-def PREVIOUS_BUILD_NUMBER = null
+//import hudson.model.*
+//library identifier: "pipeline-library@master",
+//        retriever: modernSCM(
+//                [
+//                        $class: "GitSCMSource",
+//                        remote: "https://github.com/redhat-cop/pipeline-library.git"
+//                ]
+//        )
+//
+//@Library('github.com/fabric8io/fabric8-pipeline-library@master')
+//def setupScript = null
 
 node('maven') {
-
-//    agent {
-//        label 'maven'
-//    }
 
     stage('Init') {
         echo 'Init'
@@ -77,8 +71,8 @@ node('maven') {
         sh "mvn test"
     }
 
-    stage('Integrations Test') {
-        echo 'Integrations Test'
+    stage('Integration Test') {
+        echo 'Integration Test'
         sh "mvn test"
     }
 
