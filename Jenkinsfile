@@ -1,11 +1,6 @@
 #!/usr/bin/env groovy
 
 import hudson.model.*
-import hudson.EnvVars
-import groovy.json.JsonSlurperClassic
-import groovy.json.JsonBuilder
-import groovy.json.JsonOutput
-import java.net.URL
 
 // https://github.com/openshift/jenkins-plugin
 // https://jenkins.io/blog/2017/02/07/declarative-maven-project/
