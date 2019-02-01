@@ -91,6 +91,24 @@ cleanup all created by fabric8
 oc get all --selector app=spring-boot-camel-swagger-ui -o name
 oc delete all -l provider=fabric8 --grace-period=0 --force
 
+oc delete all,configmap,pvc,serviceaccount,rolebinding --selector name=jenkins
+oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=jenkins-persistent
+oc get all
+
+
+Jenkins
+---
+
+oc new-app jenkins-persistent
+
+oc get all --selector app=jenkins-persistent
+oc get all --selector name=jenkins
+--- won't work, why?
+oc get all --selector name=jenkins,app=jenkins-persistent
+
+oc get all -l name=jenkins -l app=jenkins-persistent
+
+
 oc get services
 oc get svc
 oc expose service s2i-fuse70-spring-boot-camel-swagger-ui
@@ -168,6 +186,16 @@ mvn package fabric8:apply
 Undelploy
 --
 mvn fabric8:undeploy
+
+Image streams
+---
+
+oc get is -n openshift
+
+image stream of particular image
+--
+oc get is -n openshift | grep ^redhat-openjdk | cut -f1 -d " "
+
 
 
 NodeJS example
