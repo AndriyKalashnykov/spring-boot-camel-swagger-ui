@@ -153,13 +153,20 @@ force delete node
 -- 
 oc delete po/spring-boot-camel-swagger-ui-s2i-1-build --grace-period=0 --force=true --ignore-not-found=true
 
-pod ip
+pod ip ( https://kubernetes.io/docs/reference/kubectl/jsonpath )
 --
+
+oc get pods --selector app=spring-boot-camel-swagger-ui -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.podIP}{'\n'}{end}"
+oc get pods --selector name=jenkins -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.podIP}{'\n'}{end}"
+
 oc get pod/jenkins-1-rzdbd -o template --template "{{.metadata.name}} {{.status.podIP}}{{'\n'}}"
+oc get pod/spring-boot-camel-swagger-ui-4-4jdc4 -o template --template "{{.metadata.name}} {{.status.podIP}}{{'\n'}}"
 oc get pod/jenkins-1-rzdbd -o json | python -c "import json, sys; data=json.loads(sys.stdin.read()); print(data['status']['podIP'])"
 
-oc get pod --selector app=jenkins -o template --template "{{.metadata.name}} {{.status.podIP}}{{'\n'}}"
-oc get pod --selector app=jenkins -o template --template "{{range .items}}{{.metadata.name}} {{.status.podIP}}{{'\n'}}{{end}}"
+pod start time
+--
+oc get pods -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.startTime}{'\n'}{end}"
+
 
 oc explain pod
 oc --loglevel 7 get pod
@@ -172,6 +179,8 @@ oc adm manage-node node --list-pods
 
 fabric8
 ---
+
+oc new-app fuse7/spring-boot-camel-swagger-ui~https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui#master --context-dir=/ 
 
 oc new-app fabric8/s2i-java:2.1~https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui#master
 
