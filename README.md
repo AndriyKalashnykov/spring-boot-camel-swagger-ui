@@ -178,7 +178,6 @@ oc get pods -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.startTi
 
 kubectl get pods --sort-by='.status.containerStatuses[0].restartCount'
 
-
 oc explain pod
 oc --loglevel 7 get pod
 oc --loglevel 9999 get pod
@@ -214,7 +213,11 @@ oc patch dc nodejs-ex -p="{ \"spec\": { \"strategy\": { \"type\": \"Recreate\" }
 oc expose svc spring-boot-camel-swagger-ui --port=8081
 WARNING] F8: No such generated manifest file C:\projects\spring-boot-camel-swagger-ui-github\target\classes\META-INF\fabric8\openshift.yml for this project so ignoring
 
-Deploy
+#### Role binding 
+
+oc create rolebinding default-view --clusterrole=view --serviceaccount=fuse7:default --namespace=fuse7
+
+####Deploy
 --
 mvn clean package fabric8:deploy
 mvn clean package fabric8:resource fabric8:deploy -Popenshift
@@ -238,7 +241,6 @@ image stream of particular image
 oc get is -n openshift | grep ^redhat-openjdk | cut -f1 -d " "
 
 
-
 Templates
 ---
 
@@ -256,8 +258,6 @@ oc logs -f bc/nodejs-ex-pipeline
 oc start-build nodejs-ex --follow
 oc get svc
 oc expose svc/nodejs-ex
-
-oc delete all --selector app=nodejs-ex
 
 ####New project
 

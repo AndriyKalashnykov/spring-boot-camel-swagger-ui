@@ -1,0 +1,10 @@
+apiVersion: "v1"
+kind: "RoleBinding"
+metadata:
+  name: "spring-boot-camel-swagger-ui"
+roleRef:
+  # Add the view role to the service account
+  name: "view"
+subjects:
+  - kind: "ServiceAccount"
+    name: "spring-boot-camel-swagger-uig"
