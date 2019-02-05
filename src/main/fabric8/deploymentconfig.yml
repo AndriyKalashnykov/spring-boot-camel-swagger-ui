@@ -37,12 +37,30 @@ spec:
         version: ${project.version}
         group: ${project.groupId}
     spec:
+      serviceAccountName: ${project.artifactId}
+      volumes:
+        - name: ${project.artifactId}
+          secret:
+            # The secret must be created before deploying this application
+            secretName: ${project.artifactId}
+        - configMap:
+            items:
+              - key: application.properties
+                path: application.properties
+            name: ${project.artifactId}
+          name: ${project.artifactId}
+
       containers:
       - env:
         - name: KUBERNETES_NAMESPACE
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: GREETING_PREFIX
+            valueFrom:
+              configMapKeyRef:
+              name: ${project.artifactId}-env
+              key: greeter.prefix
         image: ${project.artifactId}:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -73,6 +91,10 @@ spec:
           initialDelaySeconds: 10
         securityContext:
           privileged: false
+        volumeMounts:
+          - mountPath: /etc/secrets/${project.artifactId}
+            name: ${project.artifactId}
+            readOnly: true
   triggers:
   - type: ConfigChange
   - imageChangeParams:

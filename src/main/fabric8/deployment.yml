@@ -11,8 +11,6 @@ spec:
         - volumeMounts:
             - name: ${project.artifactId}
               readOnly: true
-              # Mount the secret where spring-cloud-kubernetes is configured to read it
-              # see src/main/resources/bootstrap.yml
               mountPath: /etc/secrets/${project.artifactId}
           resources:
         #            requests:
