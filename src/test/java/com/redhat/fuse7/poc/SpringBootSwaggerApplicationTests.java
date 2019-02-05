@@ -34,4 +34,13 @@ public class SpringBootSwaggerApplicationTests {
         Person person = response.getBody();
         assertThat(person).isNotNull();
     }
+
+    @Test
+    public void helloApiTest() {
+        ResponseEntity<String> response = restTemplate.getForEntity("/api/hello", String.class);
+
+        System.out.println("response" + response.toString());
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
 }
