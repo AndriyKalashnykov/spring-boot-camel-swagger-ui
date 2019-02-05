@@ -48,7 +48,7 @@ spec:
               - key: application.properties
                 path: application.properties
             name: ${project.artifactId}
-          name: ${project.artifactId}
+          name: ${project.artifactId}-v1
 
       containers:
       - env:

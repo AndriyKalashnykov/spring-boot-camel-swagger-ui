@@ -1,6 +1,7 @@
 apiVersion: v1
-data:
-  greeter.prefix: Hello
 kind: ConfigMap
 metadata:
   name: ${project.artifactId}-env
+  app: ${project.artifactId}
+data:
+  greeter.prefix: Hello

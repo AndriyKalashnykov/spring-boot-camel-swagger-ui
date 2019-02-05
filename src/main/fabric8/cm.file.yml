@@ -1,5 +1,5 @@
-kind: ConfigMap
 apiVersion: v1
+kind: ConfigMap
 metadata:
   # Must match the 'spring.application.name' property of the application
   name: ${project.artifactId}
