@@ -4,7 +4,6 @@ metadata:
   labels:
     app: ${project.artifactId}
   name: ${project.artifactId}
-  namespace: fuse7
 spec:
   failedBuildsHistoryLimit: 5
   runPolicy: Serial
