@@ -7,3 +7,4 @@ data:
   application.properties: |
     # Override the configuration properties here
     quickstart.recipients=direct:async-queue,direct:file,direct:mail
+    quickstart.prefix=Hello
