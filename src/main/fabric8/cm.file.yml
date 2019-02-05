@@ -10,3 +10,4 @@ data:
     quickstart.recipients=direct:async-queue,direct:file,direct:mail
     greeter.prefix=Hello
     greeter.message=%s! Spring Boot application.properties has been mounted as volume on OpenShift!
+

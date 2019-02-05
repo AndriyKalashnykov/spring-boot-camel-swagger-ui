@@ -1,9 +1,3 @@
-# Default quickstart configuration (overridden at runtime using ConfigMaps and Secrets)
-quickstart:
-  recipients: direct:async-queue,direct:file
-  queue-username: wrong-username
-  queue-password: wrong-password
-
 # Startup configuration of Spring-cloud-kubernetes
 spring:
   application:
