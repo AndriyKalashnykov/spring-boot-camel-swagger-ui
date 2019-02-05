@@ -3,6 +3,7 @@ apiVersion: v1
 metadata:
   # Must match the 'spring.application.name' property of the application
   name: ${project.artifactId}
+  app: ${project.artifactId}
 data:
   application.properties: |
     # Override the configuration properties here
