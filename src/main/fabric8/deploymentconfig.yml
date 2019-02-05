@@ -1,4 +1,4 @@
----
+3---
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
@@ -39,16 +39,17 @@ spec:
     spec:
       serviceAccountName: ${project.artifactId}
       volumes:
-        - name: ${project.artifactId}-volume
+        - name: ${project.artifactId}-secret
           secret:
             # The secret must be created before deploying this application
             secretName: ${project.artifactId}
-        - configMap:
+        - name: ${project.artifactId}-config
+          configMap:
             name: ${project.artifactId}
             items:
             - key: application.properties
               path: application.properties
-          name: ${project.artifactId}
+
       containers:
       - env:
         - name: KUBERNETES_NAMESPACE
@@ -91,8 +92,11 @@ spec:
         securityContext:
           privileged: false
         volumeMounts:
-          - name: ${project.artifactId}-volume
+          - name: ${project.artifactId}-secret
             mountPath: /etc/secrets/${project.artifactId}
+            readOnly: true
+          - name: ${project.artifactId}-config
+            mountPath: /deployments/config/${project.artifactId}
             readOnly: true
   triggers:
   - type: ConfigChange
