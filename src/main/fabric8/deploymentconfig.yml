@@ -96,7 +96,7 @@ spec:
             mountPath: /etc/secrets/${project.artifactId}
             readOnly: true
           - name: ${project.artifactId}-config
-            mountPath: /deployments/config/${project.artifactId}
+            mountPath: /etc/config/${project.artifactId}/
             readOnly: true
   triggers:
   - type: ConfigChange
