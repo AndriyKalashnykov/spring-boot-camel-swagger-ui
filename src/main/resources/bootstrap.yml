@@ -1,11 +1,11 @@
 # Startup configuration of Spring-cloud-kubernetes
 spring:
   application:
-    name: spring-boot-camel-swagger-ui
+    name: ${project.artifactId}
   cloud:
     kubernetes:
       reload:
         # Enable live reload on ConfigMap change (disabled for Secrets by default)
         enabled: true
       secrets:
-        paths: /etc/secrets/spring-boot-camel-swagger-ui
+        paths: /etc/secrets/${project.artifactId}

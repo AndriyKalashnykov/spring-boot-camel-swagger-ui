@@ -22,12 +22,12 @@ endpoints:
 camel:
   springboot:
     # The Camel context name
-    name: spring-boot-swagger
+    name: ${project.artifactId}
 
   component:
     servlet:
       mapping:
-        contextPath: /spring-boot-swagger
+        contextPath: /${project.artifactId}
 
   health:
     indicator.enabled: true
