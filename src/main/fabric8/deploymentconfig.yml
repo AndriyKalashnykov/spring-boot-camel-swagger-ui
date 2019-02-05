@@ -57,8 +57,8 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: GREETING_PREFIX
-            valueFrom:
-              configMapKeyRef:
+          valueFrom:
+            configMapKeyRef:
               name: ${project.artifactId}-env
               key: greeter.prefix
         image: ${project.artifactId}:latest
