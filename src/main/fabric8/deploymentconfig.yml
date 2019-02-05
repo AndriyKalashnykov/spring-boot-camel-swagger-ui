@@ -37,27 +37,7 @@ spec:
         version: ${project.version}
         group: ${project.groupId}
     spec:
-      serviceAccountName: ${project.artifactId}
-      volumes:
-        - name: ${project.artifactId}
-          secret:
-            # The secret must be created before deploying this application
-            secretName: ${project.artifactId}
       containers:
-        -
-          volumeMounts:
-            - name: ${project.artifactId}
-              readOnly: true
-              # Mount the secret where spring-cloud-kubernetes is configured to read it
-              # see src/main/resources/bootstrap.yml
-              mountPath: "/etc/secrets/${project.artifactId}"
-          resources:
-      #            requests:
-      #              cpu: "0.2"
-      #              memory: 256Mi
-      #            limits:
-      #              cpu: "1.0"
-      #              memory: 256Mi
       - env:
         - name: KUBERNETES_NAMESPACE
           valueFrom:

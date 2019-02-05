@@ -1,21 +1,3 @@
-# Default quickstart configuration (overridden at runtime using ConfigMaps and Secrets)
-quickstart:
-  recipients: direct:async-queue,direct:file
-  queue-username: wrong-username
-  queue-password: wrong-password
-
-# Startup configuration of Spring-cloud-kubernetes
-spring:
-  application:
-    name: spring-boot-camel-swagger-ui
-  cloud:
-    kubernetes:
-      reload:
-        # Enable live reload on ConfigMap change (disabled for Secrets by default)
-        enabled: true
-      secrets:
-        paths: /etc/secrets/spring-boot-camel-swagger-ui
-
 server:
   address: 0.0.0.0
   port: 8080
@@ -47,4 +29,3 @@ camel:
       service.enabled: true
       indicator.enabled: true
       routes.enabled: true
-

@@ -12,10 +12,12 @@ public class HelloRoute extends RouteBuilder {
     public void configure() {
         restConfiguration().component("servlet").bindingMode(RestBindingMode.json);
 
+        String prefix = System.getenv().getOrDefault("GREETING_PREFIX", "Hello");
+
         rest().get("/hello").id("restHello").to("direct:hello");
 
         from("direct:hello").id("helloRoute")
-                .log(LoggingLevel.INFO, "Hello World")
-                .transform().simple("Hello World");
+                .log(LoggingLevel.INFO, prefix + " World")
+                .transform().simple(prefix + " World");
     }
 }
