@@ -92,7 +92,7 @@ spec:
           privileged: false
         volumeMounts:
           - mountPath: /etc/secrets/${project.artifactId}
-            name: ${project.artifactId}-v1
+            name: ${project.artifactId}
             readOnly: true
   triggers:
   - type: ConfigChange
