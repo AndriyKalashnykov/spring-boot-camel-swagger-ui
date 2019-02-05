@@ -4,10 +4,6 @@ quickstart:
   queue-username: wrong-username
   queue-password: wrong-password
 
-greeter:
-  prefix: 'G1'
-  message: '%s! G2'
-
 server:
   address: 0.0.0.0
   port: 8080
