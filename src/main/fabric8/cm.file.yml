@@ -6,9 +6,11 @@ metadata:
   app: ${project.artifactId}
 data:
   application.yml: |-
-    quickstart.recipients=direct:async-queue,direct:file,direct:mail
-    greeter.prefix=Hello
-    greeter.message=%s! Spring Boot application.yml has been mounted as volume on OpenShift!
+    quickstart:
+      recipients: direct:async-queue,direct:file
+    greeter:
+      prefix: Hello dev
+      message: %s! Spring Boot application.yml has been mounted as volume on OpenShift dev!
     ---
     spring:
       profiles: development
