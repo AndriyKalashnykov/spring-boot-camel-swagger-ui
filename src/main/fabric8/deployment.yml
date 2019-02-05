@@ -25,5 +25,5 @@ spec:
             - name: GREETING_PREFIX
               valueFrom:
                 configMapKeyRef:
-                  name: spring-boot-configmaps-demo
-                  key: greeter.prefix
+                  name: ${project.artifactId}
+                  key: quickstart.prefix
