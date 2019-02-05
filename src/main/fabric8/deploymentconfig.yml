@@ -47,9 +47,8 @@ spec:
           configMap:
             name: ${project.artifactId}
             items:
-            - key: application.properties
-              path: application.properties
-
+            - key: application.yml
+              path: application.yml
       containers:
       - env:
         - name: KUBERNETES_NAMESPACE
@@ -61,6 +60,10 @@ spec:
             configMapKeyRef:
               name: ${project.artifactId}-env
               key: greeter.prefix
+        - name: JAVA_APP_DIR
+          value: /deployments
+        - name: JAVA_OPTIONS
+          value: -Dspring.profiles.active=developer
         image: ${project.artifactId}:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
