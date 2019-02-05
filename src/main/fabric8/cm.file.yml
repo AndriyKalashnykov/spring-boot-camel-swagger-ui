@@ -8,4 +8,5 @@ data:
   application.properties: |
     # Override the configuration properties here
     quickstart.recipients=direct:async-queue,direct:file,direct:mail
-    quickstart.prefix=Hello
+    greeter.prefix=Hello
+    greeter.message=%s! Spring Boot application.properties has been mounted as volume on OpenShift!

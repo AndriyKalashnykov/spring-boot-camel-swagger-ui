@@ -3,21 +3,36 @@ package com.redhat.fuse7.poc.route;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class HelloRoute extends RouteBuilder {
 
+
+    public static final String GREETING_PREFIX = "GREETING_PREFIX";
+    public static final String GREETING_PREFIX_DEFAULT_VALUE = "Hi";
+
+    @Value("${greeter.message}")
+    private String greeterMessageFormat;
+
+    @Value("${greeter.prefix}")
+    private String greeterPrefix;
+
+
     @Override
     public void configure() {
         restConfiguration().component("servlet").bindingMode(RestBindingMode.json);
 
-        String prefix = System.getenv().getOrDefault("GREETING_PREFIX", "Hi");
+        String greeterPrefixEnv = System.getenv().getOrDefault(GREETING_PREFIX, GREETING_PREFIX_DEFAULT_VALUE);
+        String greetingStr = String.format(greeterMessageFormat, greeterPrefixEnv);
 
         rest().get("/hello").id("restHello").to("direct:hello");
 
         from("direct:hello").id("helloRoute")
-                .log(LoggingLevel.INFO, prefix + " World")
-                .transform().simple(prefix + " World");
+                .log(LoggingLevel.INFO, "env: " + greeterPrefixEnv)
+                .log(LoggingLevel.INFO, "file: " + greeterPrefix)
+                .log(LoggingLevel.INFO, greetingStr)
+                .transform().simple(greetingStr);
     }
 }
