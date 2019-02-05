@@ -39,7 +39,7 @@ spec:
     spec:
       serviceAccountName: ${project.artifactId}
       volumes:
-        - name: ${project.artifactId}
+        - name: ${project.artifactId}-volume
           secret:
             # The secret must be created before deploying this application
             secretName: ${project.artifactId}
@@ -91,8 +91,8 @@ spec:
         securityContext:
           privileged: false
         volumeMounts:
-          - mountPath: /etc/secrets/${project.artifactId}
-            name: ${project.artifactId}
+          - name: ${project.artifactId}-volume
+            mountPath: /etc/secrets/${project.artifactId}
             readOnly: true
   triggers:
   - type: ConfigChange
