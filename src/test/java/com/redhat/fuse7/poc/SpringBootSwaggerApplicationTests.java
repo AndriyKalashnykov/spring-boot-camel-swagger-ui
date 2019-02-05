@@ -1,6 +1,6 @@
-package com.redhat.springbootswagger;
+package com.redhat.fuse7.poc;
 
-import com.redhat.springbootswagger.model.Person;
+import com.redhat.fuse7.poc.model.Person;
 import org.apache.camel.CamelContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;

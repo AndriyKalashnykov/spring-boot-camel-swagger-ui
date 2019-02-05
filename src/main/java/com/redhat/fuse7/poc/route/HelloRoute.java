@@ -1,6 +1,5 @@
-package com.redhat.springbootswagger.route;
+package com.redhat.fuse7.poc.route;
 
-import com.redhat.springbootswagger.model.Person;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;

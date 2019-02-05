@@ -1,4 +1,4 @@
-package com.redhat.springbootswagger.model;
+package com.redhat.fuse7.poc.model;
 
 public class Person {
 

@@ -1,6 +1,6 @@
-package com.redhat.springbootswagger.route;
+package com.redhat.fuse7.poc.route;
 
-import com.redhat.springbootswagger.model.Person;
+import com.redhat.fuse7.poc.model.Person;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
 import org.springframework.stereotype.Component;

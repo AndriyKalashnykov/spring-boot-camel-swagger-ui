@@ -1,4 +1,4 @@
-package com.redhat.springbootswagger;
+package com.redhat.fuse7.poc;
 
 import org.apache.camel.component.servlet.CamelHttpTransportServlet;
 import org.apache.camel.component.swagger.DefaultCamelSwaggerServlet;
