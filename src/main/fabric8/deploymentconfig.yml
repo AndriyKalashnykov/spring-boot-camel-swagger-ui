@@ -63,7 +63,7 @@ spec:
         - name: JAVA_APP_DIR
           value: /deployments
         - name: JAVA_OPTIONS
-          value: -Dspring.profiles.active=developer
+          value: -Dspring.profiles.active=
         image: ${project.artifactId}:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:

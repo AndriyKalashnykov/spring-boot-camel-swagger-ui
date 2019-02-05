@@ -13,10 +13,10 @@ data:
       message: "%s! Spring Boot application.yml has been mounted as volume on OpenShift dev!"
     ---
     spring:
-      profiles: development
+      profiles: qa
     greeter:
-      prefix: Hello dev
-      message: "%s! Spring Boot application.yml has been mounted as volume on OpenShift dev!"
+      prefix: Hello qa
+      message: "%s! Spring Boot application.yml has been mounted as volume on OpenShift qa!"
     ---
     spring:
       profiles: production
