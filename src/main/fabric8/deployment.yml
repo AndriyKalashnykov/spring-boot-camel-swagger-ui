@@ -1,20 +1,20 @@
 spec:
   template:
     spec:
-      serviceAccountName: "spring-boot-camel-swagger-ui"
+      serviceAccountName: ${project.artifactId}
       volumes:
-        - name: "spring-boot-camel-swagger-ui"
+        - name: ${project.artifactId}
           secret:
             # The secret must be created before deploying this application
-            secretName: "spring-boot-camel-swagger-ui"
+            secretName: ${project.artifactId}
       containers:
         -
           volumeMounts:
-            - name: "spring-boot-camel-swagger-ui"
+            - name: ${project.artifactId}
               readOnly: true
               # Mount the secret where spring-cloud-kubernetes is configured to read it
               # see src/main/resources/bootstrap.yml
-              mountPath: "/etc/secrets/spring-boot-camel-swagger-ui"
+              mountPath: "/etc/secrets/${project.artifactId}"
           resources:
 #            requests:
 #              cpu: "0.2"
