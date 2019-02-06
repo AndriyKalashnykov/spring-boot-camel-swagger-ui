@@ -176,7 +176,7 @@ oc get pods -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.startTi
 
 #####List pods Sorted by Restart Count
 
-kubectl get pods --sort-by='.status.containerStatuses[0].restartCount'
+oc get pods --sort-by=".status.containerStatuses[0].restartCount"
 
 oc explain pod
 oc --loglevel 7 get pod
@@ -186,6 +186,10 @@ oc get pods -o wide
 #####pods on a node
 
 oc adm manage-node node --list-pods
+
+#### Get DCs strategy type
+
+oc get dc jenkins -o=go-template="{{ .spec.strategy.type }}"
 
 fabric8
 ---
