@@ -9,9 +9,12 @@ set -ex
 #oc delete all --selector app=spring-boot-configmaps-demo
 #oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=spring-boot-configmaps-demo
 
-#dcs=$(oc get configmaps --selector app=spring-boot-configmaps-demo | cut -f1 -d " ")
+#| cut -f1 -d " "
+
+#dcs=$(oc get configmaps --selector app=spring-boot-configmaps-demo ls -l | sed -n 2p )
 #  for dc in $dcs; do
-#    oc delete configmap ${dc}
+#  echo ${dc}
+#  oc delete configmap ${dc}
 #done
 
 APP_NAME=spring-boot-camel-swagger-ui
