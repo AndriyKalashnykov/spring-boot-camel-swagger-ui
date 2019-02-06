@@ -64,9 +64,14 @@ public class SpringBootSwaggerApplicationTests {
     @Test
     public void helloApiTest() {
         ResponseEntity<String> response = restTemplate.getForEntity("/api/hello", String.class);
-
         logger.info("response: " + response.toString());
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
 
+    @Test
+    public void extApiTest() {
+        ResponseEntity<String> response = restTemplate.getForEntity("/api/ext", String.class);
+        logger.info("response: " + response.toString());
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 }
