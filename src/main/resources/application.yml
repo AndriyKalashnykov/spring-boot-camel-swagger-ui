@@ -12,9 +12,10 @@ springfox:
 server:
   address: 0.0.0.0
   port: 8080
-  #  host: spring-boot-camel-swagger-ui.rh-us-east-1.openshift.com
-  host: localhost
-  apiServerPort: 8080
+  host: spring-boot-camel-swagger-ui-fuse7.6923.rh-us-east-1.openshiftapps.com
+  apiServerPort: 80
+#  host: localhost
+#  apiServerPort: 8080
 
 management:
   server: 0.0.0.0

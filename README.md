@@ -64,14 +64,18 @@ mvn clean package spring-boot:run
 
 curl -X GET -H "Content-type: application/json" -H "Accept: application/json"  "http://localhost:8080/api/person"
 
-http://localhost:8080/swagger/index.html
-
-http://localhost:8080/api-doc
-http://localhost:8080/api-doc/spring-boot-swagger
+http://localhost:8080/swagger-ui.html
+http://localhost:8080/api/api-doc
 
 http://localhost:8080/api/person
 http://localhost:8080/api/hello
 
+http://spring-boot-camel-swagger-ui-fuse7.6923.rh-us-east-1.openshiftapps.com/swagger-ui.html
+http://spring-boot-camel-swagger-ui-fuse7.6923.rh-us-east-1.openshiftapps.com/api/api-doc
+
+http://spring-boot-camel-swagger-ui-fuse7.6923.rh-us-east-1.openshiftapps.com/api/hello
+http://spring-boot-camel-swagger-ui-fuse7.6923.rh-us-east-1.openshiftapps.com/api/person
+http://spring-boot-camel-swagger-ui-fuse7.6923.rh-us-east-1.openshiftapps.com/api/ext
 
 
 Health checks
