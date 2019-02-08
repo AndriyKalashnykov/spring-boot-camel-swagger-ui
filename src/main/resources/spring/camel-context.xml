@@ -11,8 +11,7 @@
             <apiProperty key="apiHostPath" value="{{server.host}}"/>
             <apiProperty key="api.version" value="1.0.0"/>
             <apiProperty key="api.title" value="REST API"/>
-            <apiProperty key="api.description"
-                         value="API Test"/>
+            <apiProperty key="api.description" value="API Test"/>
             <apiProperty key="api.contact.name" value="Andriy Kalashnykov"/>
         </restConfiguration>
         <rest id="scenario-two-rest" path="/retrieve">
