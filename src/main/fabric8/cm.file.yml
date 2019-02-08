@@ -11,15 +11,22 @@ data:
     greeter:
       prefix: Hello dev
       message: "%s! Spring Boot application.yml has been mounted as volume on OpenShift dev!"
+    server:
+      host: spring-boot-camel-swagger-ui-fuse7.6923.rh-us-east-1.openshiftapps.com
+      apiServerPort: 80
     ---
     spring:
       profiles: qa
     greeter:
       prefix: Hello qa
       message: "%s! Spring Boot application.yml has been mounted as volume on OpenShift qa!"
+      host: spring-boot-camel-swagger-ui-fuse7-qa.6923.rh-us-east-1.openshiftapps.com
+      apiServerPort: 80
     ---
     spring:
       profiles: production
     greeter:
       prefix: Hello prod
       message: "%s! Spring Boot application.yml has been mounted as volume on OpenShift prod!"
+      host: spring-boot-camel-swagger-ui-fuse7-prod.6923.rh-us-east-1.openshiftapps.com
+      apiServerPort: 80

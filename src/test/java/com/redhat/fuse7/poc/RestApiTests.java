@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class SpringBootSwaggerApplicationTests {
+public class RestApiTests {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
