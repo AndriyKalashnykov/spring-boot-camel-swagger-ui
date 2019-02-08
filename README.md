@@ -224,7 +224,6 @@ oc create rolebinding default-view --clusterrole=view --serviceaccount=fuse7:def
 ####Deploy
 --
 mvn clean package fabric8:deploy -Popenshift
-mvn clean package fabric8:resource fabric8:deploy -Popenshift
 
 Chage config
 ---
