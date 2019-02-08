@@ -215,8 +215,9 @@
                 <plugins>
 
                     <plugin>
-                        <groupId>org.jboss.redhat-fuse</groupId>
+                        <groupId>io.fabric8</groupId>
                         <artifactId>fabric8-maven-plugin</artifactId>
+                        <version>${fabric8.maven.plugin.version}</version>
                         <executions>
                             <execution>
                                 <goals>
