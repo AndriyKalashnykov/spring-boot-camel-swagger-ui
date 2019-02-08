@@ -4,12 +4,20 @@ greeter:
   prefix: Hello dev local
   message: "%s! Spring Boot application.yml has been mounted as volume on OpenShift dev local!"
 
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api/api-doc
 server:
   address: 0.0.0.0
   port: 8080
+  #  host: spring-boot-camel-swagger-ui.rh-us-east-1.openshift.com
+  host: localhost
+  apiServerPort: 8080
 
 management:
-  server:
+  server: 0.0.0.0
   address: 0.0.0.0
   port: 8081
   security.enabled: false
@@ -22,12 +30,14 @@ endpoints:
 camel:
   springboot:
     # The Camel context name
-    name: ${project.artifactId}
+    name: camel
+    main-run-controller: true
+    xmlRoutes: true
 
   component:
     servlet:
       mapping:
-        contextPath: /${project.artifactId}
+        contextPath: /api/*
 
   health:
     indicator.enabled: true

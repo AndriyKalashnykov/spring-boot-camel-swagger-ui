@@ -76,14 +76,14 @@ http://localhost:8080/api/hello
 
 Health checks
 ---
-http://localhost:8080/health
-http://localhost:8080/metrics
-http://localhost:8080/env
-http://localhost:8080/beans
+http://localhost:8081/health
+http://localhost:8081/metrics
+http://localhost:8081/env
+http://localhost:8081/beans
 
 
-http://localhost:8080/camel/health/check
-http://localhost:8080/camel/routes
+http://localhost:8081/camel/health/check
+http://localhost:8081/camel/routes
 
 
 OCP

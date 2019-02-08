@@ -28,15 +28,12 @@ public class RestCallRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        restConfiguration().component("servlet").bindingMode(RestBindingMode.json);
 
         jsonDataFormat.setPrettyPrint(true);
 
-        restConfiguration().producerComponent("http4");
-
         //from("timer://test?period=1200000") //called every 20 mins
 
-        rest("/ext").get().id("restExt").outType(Person.class).to("direct:ext");
+        rest("/ext").get().id("restExt").outType(Person.class).to("direct:ext").bindingMode(RestBindingMode.json);
 
         from("direct:ext").id("extRoute")
                 //.process(exchange -> exchange.getIn().setBody("body"))
@@ -49,6 +46,8 @@ public class RestCallRoute extends RouteBuilder {
                     public void process(Exchange exchange) throws Exception {
                         Employee employee = exchange.getIn().getBody(Employee.class);
                         logger.info("========>>>>>>" + employee.toString());
+                        exchange.getIn().setBody(employee);
+                        exchange.getOut().setBody(employee);
                     }
                 }).log("body: ${body}");
     }

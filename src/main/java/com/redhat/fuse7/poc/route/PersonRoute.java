@@ -10,10 +10,9 @@ public class PersonRoute extends RouteBuilder {
 
     @Override
     public void configure() {
-        restConfiguration().component("servlet").bindingMode(RestBindingMode.json);
 
         rest("/person").get().id("restPerson").outType(Person.class)
-                .to("direct:talk");
+                .to("direct:talk").bindingMode(RestBindingMode.json);
 
         from("direct:talk").id("talkRoute")
                 .log("Processing exchange...")
