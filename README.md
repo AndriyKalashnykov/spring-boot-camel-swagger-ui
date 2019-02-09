@@ -216,10 +216,33 @@ oc scale dc/nodejs-ex --replicas=1
 
 oc get dc/nodejs-ex -o jsonpath='{.spec.replicas}'
 oc patch dc/nodejs-ex -p="{ \"spec\": { \"replicas\": 2}}"
-oc patch dc nodejs-ex -p="{ \"spec\": { \"strategy\": { \"type\": \"Recreate\" }}}"
+oc patch dc/nodejs-ex -p="{ \"spec\": { \"strategy\": { \"type\": \"Recreate\" }}}"
+oc patch dc/spring-boot-camel-swagger-ui -p="{ \"spec\": { \"strategy\": { \"type\": \"Recreate\" }}}"
+
+oc get dc spring-boot-camel-swagger-ui -o json > dc.json
+
+##### change profile
+oc patch dc/spring-boot-camel-swagger-ui -p="[{\"op\": \"replace\", \"path\": \"/spec/template/spec/containers/0/env/2\", \"value\": {\"name\":\"JAVA_OPTIONS\",\"value\":\"-Dspring.profiles.active=qa\"}}]" --type=json
+
+##### add container port
+oc patch dc/spring-boot-camel-swagger-ui -p="[{\"op\": \"replace\", \"path\": \"/spec/template/spec/containers/0/ports/3\", \"value\": {\"name\":\"ping\",\"containerPort\":8888,\"protocol\":\"TCP\"}}]" --type=json
+
+##### remove rolling params
+
+oc patch dc/spring-boot-camel-swagger-ui -p='[{\"op\":\"remove\", \"path\": \"/spec/strategy/rollingParams\"}]' --type=json
+
+oc patch dc/minimal-notebook --patch '{"spec":{"template":{"spec":{"serviceAccountName": "runasuid1000"}}}}'
+oc patch dc spring-boot-camel-swagger-ui -p="{\"spec\": {\"template\": {\"spec\": {\"containers\": [{\"name\": \"jenkins\",\"resources\": {\"limits\": {\"cpu\": \"500m\",\"memory\": \"514Mi\"}}}]}}}}"
+oc patch dc <name> --patch='{"spec":{"template":{"spec":{"containers":[{"name": "<container-name>", "image":"image-name:tag"}]}}}}'
+oc patch dc dc-name --patch='{"spec":{"template":{"spec":{"containers[0]":{"image":"image-name:tag"}}}}}'
+oc patch deployment myapp-deployment -p '{"spec":{"template":{"spec":{"containers":[{"name":"myapp","image":"172.20.34.206:5000/myapp:img:3.0"}]}}}}'
 
 oc expose svc spring-boot-camel-swagger-ui --port=8081
 WARNING] F8: No such generated manifest file C:\projects\spring-boot-camel-swagger-ui-github\target\classes\META-INF\fabric8\openshift.yml for this project so ignoring
+
+#### Environment variables
+
+
 
 #### Role binding 
 
