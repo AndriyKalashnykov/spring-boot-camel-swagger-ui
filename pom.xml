@@ -184,19 +184,7 @@
             </activation>
 
             <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.jboss.redhat-fuse</groupId>
-                            <artifactId>fabric8-maven-plugin</artifactId>
-                            <version>${fuse.version}</version>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-
-
                 <plugins>
-
                     <plugin>
                         <groupId>io.fabric8</groupId>
                         <artifactId>fabric8-maven-plugin</artifactId>
@@ -210,7 +198,6 @@
                             </execution>
                         </executions>
                     </plugin>
-
                 </plugins>
             </build>
 

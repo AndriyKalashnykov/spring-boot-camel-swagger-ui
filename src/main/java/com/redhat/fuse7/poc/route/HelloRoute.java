@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class HelloRoute extends RouteBuilder {
-
-
     public static final String GREETING_PREFIX = "GREETING_PREFIX";
     public static final String GREETING_PREFIX_DEFAULT_VALUE = "Hi";
 
