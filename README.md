@@ -283,14 +283,21 @@ oc get template -n openshift
 ###### Private repo build
 https://cookbook.openshift.org/building-and-deploying-from-source/how-can-i-build-from-a-private-repository-on-github.html
 
-ssh-keygen -C "openshift-source-builder/repo@github" -f repo-at-github -N '12345'
+ssh-keygen -C "openshift-source-builder/repo@github" -f repo-at-github -t rsa -N ""
+
 oc create secret generic repo-at-github --from-file=ssh-privatekey=repo-at-github --type=kubernetes.io/ssh-auth
 oc secrets link builder repo-at-github
 
-oc new-app httpd~git@github.com:osevg/private-repo.git --source-secret repo-at-github --name mysite
-oc new-build httpd~git@github.com:osevg/private-repo.git --source-secret repo-at-github --name mysite
+New app
+oc new-app jboss-eap71-openshift:1.1~git@github.com:AndriyKalashnykov/openshift-tasks-private.git --source-secret repo-at-github --name mysite
 
-oc set build-secret bc/tasks repo-at-github --source
+New build
+oc new-build jboss-eap71-openshift:1.1~git@github.com:AndriyKalashnykov/openshift-tasks-private.git --source-secret repo-at-github --name mysite
+
+Update existing build
+oc set build-secret mysite repo-at-github --source
+
+oc start-build mysite
 
 NodeJS example
 --
