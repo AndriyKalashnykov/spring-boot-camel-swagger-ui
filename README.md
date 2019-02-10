@@ -164,7 +164,11 @@ force delete node
 -- 
 oc delete po/spring-boot-camel-swagger-ui-s2i-1-build --grace-period=0 --force=true --ignore-not-found=true
 
-#####pod ip ( https://kubernetes.io/docs/reference/kubectl/jsonpath )
+##### pods labels
+
+oc get pods --show-labels
+
+##### pod ip ( https://kubernetes.io/docs/reference/kubectl/jsonpath )
 --
 
 oc get pods --selector app=spring-boot-camel-swagger-ui -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.podIP}{'\n'}{end}"
@@ -276,6 +280,17 @@ Templates
 
 oc get template -n openshift
 
+###### Private repo build
+https://cookbook.openshift.org/building-and-deploying-from-source/how-can-i-build-from-a-private-repository-on-github.html
+
+ssh-keygen -C "openshift-source-builder/repo@github" -f repo-at-github -N '12345'
+oc create secret generic repo-at-github --from-file=ssh-privatekey=repo-at-github --type=kubernetes.io/ssh-auth
+oc secrets link builder repo-at-github
+
+oc new-app httpd~git@github.com:osevg/private-repo.git --source-secret repo-at-github --name mysite
+oc new-build httpd~git@github.com:osevg/private-repo.git --source-secret repo-at-github --name mysite
+
+oc set build-secret bc/tasks repo-at-github --source
 
 NodeJS example
 --
@@ -289,6 +304,14 @@ oc start-build nodejs-ex --follow
 oc get svc
 oc expose svc/nodejs-ex
 
-####New project
+#### New FUSE 7 project
 
 mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -DarchetypeCatalog=https://maven.repository.redhat.com/ga/io/fabric8/archetypes/archetypes-catalog/2.2.0.fuse-720018-redhat-00001/archetypes-catalog-2.2.0.fuse-720018-redhat-00001-archetype-catalog.xml -DarchetypeGroupId=org.jboss.fuse.fis.archetypes -DarchetypeArtifactId=spring-boot-camel-xml-archetype -DarchetypeVersion=2.2.0.fuse-720018-redhat-00001
+
+### Tools-box
+https://github.com/redhat-cop/containers-quickstarts/tree/master/tool-box
+
+oc run -i -t tool-box-test --image=quay.io/redhat-cop/tool-box --rm bash
+
+docker pull quay.io/redhat-cop/tool-box
+docker run -it --privileged quay.io/redhat-cop/tool-box
