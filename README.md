@@ -308,10 +308,18 @@ oc expose svc/nodejs-ex
 
 mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -DarchetypeCatalog=https://maven.repository.redhat.com/ga/io/fabric8/archetypes/archetypes-catalog/2.2.0.fuse-720018-redhat-00001/archetypes-catalog-2.2.0.fuse-720018-redhat-00001-archetype-catalog.xml -DarchetypeGroupId=org.jboss.fuse.fis.archetypes -DarchetypeArtifactId=spring-boot-camel-xml-archetype -DarchetypeVersion=2.2.0.fuse-720018-redhat-00001
 
-### Tools-box
+##### Tools-box
 https://github.com/redhat-cop/containers-quickstarts/tree/master/tool-box
 
 oc run -i -t tool-box-test --image=quay.io/redhat-cop/tool-box --rm bash
 
 docker pull quay.io/redhat-cop/tool-box
 docker run -it --privileged quay.io/redhat-cop/tool-box
+
+##### RH Registry
+
+docker pull registry.access.redhat.com/rhel7-minimal
+docker run -it --privileged registry.access.redhat.com/rhel7-minimal /bin/bash
+
+docker pull registry.access.redhat.com/rhel7.6
+docker pull registry.access.redhat.com/rhel8-beta/rhel-minimal
