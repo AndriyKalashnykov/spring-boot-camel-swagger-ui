@@ -62,7 +62,7 @@ node('maven') {
     }
     stage('Build') {
         echo 'Build'
-        sh "mvn clean package fabric8:resource  -Popenshift"
+        sh "mvn clean package fabric8:resource fabric8:build -Popenshift"
         //openshiftBuild(bldCfg: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
     }
 
@@ -79,7 +79,7 @@ node('maven') {
     stage('Deploy') {
         echo 'deploy'
 //        sh "mvn fabric8:undeploy"
-        sh "mvn fabric8:apply fabric8:build -Popenshift"
+        sh "mvn fabric8:apply -Popenshift"
         openshiftDeploy(depCfg: 'spring-boot-camel-swagger-ui')
     }
 }
