@@ -26,8 +26,8 @@ public class HelloRoute extends RouteBuilder {
         rest().get("/hello").id("restHello").to("direct:hello").bindingMode(RestBindingMode.json);
 
         from("direct:hello").id("helloRoute")
-                .log(LoggingLevel.INFO, "env: " + greeterPrefixEnv)
-                .log(LoggingLevel.INFO, "file: " + greeterPrefix)
+                .log(LoggingLevel.INFO, "1 env: " + greeterPrefixEnv)
+                .log(LoggingLevel.INFO, "1 file: " + greeterPrefix)
                 .log(LoggingLevel.INFO, greetingStr)
                 .transform().simple(greetingStr);
     }
