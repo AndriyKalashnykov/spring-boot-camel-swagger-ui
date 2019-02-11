@@ -60,6 +60,12 @@ node('maven') {
         echo 'Checkout'
         checkout scm
     }
+
+    stage('Prepare') {
+        echo 'Prepare'
+        sh "oc policy add-role-to-user admin -z jenkins"
+    }
+
     stage('Build') {
         echo 'Build'
         sh "mvn clean package fabric8:resource fabric8:build -Popenshift"
