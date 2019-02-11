@@ -79,7 +79,7 @@ node('maven') {
     stage('Deploy') {
         echo 'deploy'
 //        sh "mvn fabric8:undeploy"
-        sh "mvn fabric8:apply fabric8:deploy -Popenshift"
-        //openshiftDeploy(depCfg: 'spring-boot-camel-swagger-ui')
+        sh "mvn fabric8:apply fabric8:build -Popenshift"
+        openshiftDeploy(depCfg: 'spring-boot-camel-swagger-ui')
     }
 }
