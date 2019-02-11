@@ -68,7 +68,7 @@ node('maven') {
 
     stage('Build') {
         echo 'Build'
-        sh "mvn clean package fabric8:resource fabric8:apply fabric8:build -Popenshift"
+        sh "mvn clean package fabric8:build fabric8:resource fabric8:apply -Popenshift"
         //openshiftBuild(bldCfg: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
     }
 
