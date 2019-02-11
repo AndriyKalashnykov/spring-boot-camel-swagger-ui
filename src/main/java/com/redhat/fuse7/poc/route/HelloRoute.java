@@ -21,7 +21,7 @@ public class HelloRoute extends RouteBuilder {
     @Override
     public void configure() {
         String greeterPrefixEnv = System.getenv().getOrDefault(GREETING_PREFIX, GREETING_PREFIX_DEFAULT_VALUE);
-        String greetingStr = String.format(greeterMessageFormat, greeterPrefixEnv);
+        String greetingStr = String.format(greeterMessageFormat, greeterPrefixEnv) + " zzz";
 
         rest().get("/hello").id("restHello").to("direct:hello").bindingMode(RestBindingMode.json);
 
