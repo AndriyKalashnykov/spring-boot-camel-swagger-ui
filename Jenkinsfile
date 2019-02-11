@@ -62,8 +62,8 @@ node('maven') {
     }
     stage('Build') {
         echo 'Build'
-        //sh "mvn clean package"
-        openshiftBuild(bldCfg: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
+        sh "mvn clean package fabric8:resource"
+        //openshiftBuild(bldCfg: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
     }
 
     stage('Unit Test') {
@@ -77,9 +77,9 @@ node('maven') {
     }
 
     stage('Deploy') {
-//        sh "mvn fabric8:undeploy"
-//        sh "mvn fabric8:deploy -Popenshift -DskipTests"
         echo 'deploy'
-        openshiftDeploy(depCfg: 'spring-boot-camel-swagger-ui')
+//        sh "mvn fabric8:undeploy"
+        sh "mvn fabric8:apply fabric8:deploy -Popenshift"
+        //openshiftDeploy(depCfg: 'spring-boot-camel-swagger-ui')
     }
 }
