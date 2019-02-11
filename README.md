@@ -254,15 +254,16 @@ oc create rolebinding default-view --clusterrole=view --serviceaccount=fuse7:def
 
 ####Deploy
 --
+mvn clean package fabric8:deploy -Popenshift
 mvn clean package fabric8:deploy -Popenshift -Dfabric8.generator.fromMode=istag -Dfabric8.generator.from=openshift/fis-java-openshift:2.0
 
 Chage config
 ---
-mvn package fabric8:apply
+mvn package fabric8:apply -Popenshift
 
 Undelploy
 --
-mvn fabric8:undeploy
+mvn fabric8:undeploy -Popenshift
 
 Image streams
 ---
