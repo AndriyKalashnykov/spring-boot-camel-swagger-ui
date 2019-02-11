@@ -6,6 +6,8 @@
 // https://github.com/openshift/jenkins-client-plugin
 // https://wilsonmar.github.io/jenkins2-pipeline/
 
+//https://github.com/fabric8io/fabric8-jenkinsfile-library/tree/master/maven
+
 //import hudson.model.*
 //library identifier: "pipeline-library@master",
 //        retriever: modernSCM(
@@ -15,8 +17,8 @@
 //                ]
 //        )
 //
-//@Library('github.com/fabric8io/fabric8-pipeline-library@master')
-//def setupScript = null
+@Library('github.com/fabric8io/fabric8-pipeline-library@master')
+def setupScript = null
 
 node('maven') {
 
