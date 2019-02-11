@@ -63,12 +63,13 @@ node('maven') {
 
     stage('Prepare') {
         echo 'Prepare'
+        sh "oc policy add-role-to-user view -z default"
         sh "oc policy add-role-to-user admin -z jenkins"
     }
 
     stage('Build') {
         echo 'Build'
-        sh "mvn clean package fabric8:resource-apply -Popenshift"
+//        sh "mvn clean package "
         //openshiftBuild(bldCfg: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
     }
 
@@ -85,7 +86,7 @@ node('maven') {
     stage('Deploy') {
         echo 'deploy'
 //        sh "mvn fabric8:undeploy"
-        sh "mvn fabric8:build -Popenshift"
+        sh "mvn fabric8:deploy -Popenshift -DskipTests"
         //openshiftDeploy(depCfg: 'spring-boot-camel-swagger-ui')
     }
 }
