@@ -43,7 +43,7 @@ node('maven') {
         org = tokens[0]
         repo = tokens[1]
         branch = tokens[2]
-        echo 'account-org/repo/branch=' + org +'/'+ repo +'/'+ branch
+        echo 'account-org/repo/branch=' + org + '/' + repo + '/' + branch
 
 //        def scmUrl = scm.getUserRemoteConfigs()[0].getUrl()
 //        echo 'scmUrl = ${scmUrl}'
@@ -62,8 +62,8 @@ node('maven') {
     }
     stage('Build') {
         echo 'Build'
-//    openshiftBuild(bldCfg: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
-        sh "mvn clean package"
+        //sh "mvn clean package"
+        openshiftBuild(bldCfg: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
     }
 
     stage('Unit Test') {
