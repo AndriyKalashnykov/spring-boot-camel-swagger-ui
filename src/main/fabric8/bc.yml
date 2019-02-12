@@ -3,7 +3,7 @@ kind: BuildConfig
 metadata:
   labels:
     app: ${project.artifactId}
-  name: ${project.artifactId}-pipeline
+  name: ${project.artifactId}
 spec:
   failedBuildsHistoryLimit: 50
   runPolicy: Serial
