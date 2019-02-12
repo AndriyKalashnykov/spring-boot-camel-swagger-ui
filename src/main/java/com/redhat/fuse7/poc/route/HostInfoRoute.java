@@ -19,10 +19,11 @@ public class HostInfoRoute extends RouteBuilder {
                 .to("direct:hostinfo").bindingMode(RestBindingMode.json);
 
         from("direct:hostinfo").id("directHostInfo")
-                .log("OS: " + hostInfo.getHostname())
+                .log("Hostname: " + hostInfo.getHostname())
+                .log("OS: " + hostInfo.getOS())
                 .process(exchange -> {
 
-                    exchange.getIn().setBody(hostInfo.getHostname());
+                    exchange.getIn().setBody(hostInfo.getHostname() + " : " + "OS: " + hostInfo.getOS());
                 });
     }
 }
