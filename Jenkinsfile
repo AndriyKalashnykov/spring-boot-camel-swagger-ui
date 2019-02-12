@@ -71,7 +71,7 @@ node('maven') {
 
     stage('Build') {
         echo 'Build'
-        sh "mvn clean package -Popenshift -DskipTests"
+        sh "mvn clean package -DskipTests"
         //openshiftBuild(bldCfg: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
     }
 
