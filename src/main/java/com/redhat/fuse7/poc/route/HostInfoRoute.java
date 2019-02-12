@@ -23,7 +23,7 @@ public class HostInfoRoute extends RouteBuilder {
                 .log("OS: " + hostInfo.getOS())
                 .process(exchange -> {
 
-                    exchange.getIn().setBody(hostInfo.getHostname() + " : " + "OS: " + hostInfo.getOS());
+                    exchange.getIn().setBody(hostInfo.getHostname() + " : " + ", OS: " + hostInfo.getOS());
                 });
     }
 }
