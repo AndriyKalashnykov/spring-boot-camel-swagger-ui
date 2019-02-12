@@ -21,13 +21,13 @@ public class HelloRoute extends RouteBuilder {
     @Override
     public void configure() {
         String greeterPrefixEnv = System.getenv().getOrDefault(GREETING_PREFIX, GREETING_PREFIX_DEFAULT_VALUE);
-        String greetingStr = String.format(greeterMessageFormat, greeterPrefixEnv) + " 444";
+        String greetingStr = String.format(greeterMessageFormat, greeterPrefixEnv) + " 1";
 
         rest().get("/hello").id("restHello").to("direct:hello").bindingMode(RestBindingMode.json);
 
         from("direct:hello").id("helloRoute")
-                .log(LoggingLevel.INFO, "4 env: " + greeterPrefixEnv)
-                .log(LoggingLevel.INFO, "4 file: " + greeterPrefix)
+                .log(LoggingLevel.INFO, "1 env: " + greeterPrefixEnv)
+                .log(LoggingLevel.INFO, "1 file: " + greeterPrefix)
                 .log(LoggingLevel.INFO, greetingStr)
                 .transform().simple(greetingStr);
     }
