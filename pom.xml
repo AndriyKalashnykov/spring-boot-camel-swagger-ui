@@ -266,7 +266,7 @@
                                 <config>
                                     <spring-boot>
                                         <fromMode>istag</fromMode>
-                                        <from>openshift/fis-java-openshift:2.0</from>
+                                        <from>openshift/jboss-fuse70-java-openshift:1.0</from>
                                     </spring-boot>
                                 </config>
                             </generator>

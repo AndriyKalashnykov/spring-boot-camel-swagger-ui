@@ -116,6 +116,14 @@ Jenkins
 
 oc new-app jenkins-persistent
 
+oc new-app jenkins-persistent --param ENABLE_OAUTH=true --param MEMORY_LIMIT=4Gi --param VOLUME_CAPACITY=10Gi --env JENKINS_JAVA_OVERRIDES="-Dhudson.slaves.NodeProvisioner.initialDelay=0 -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85" -n gpte-jenkins
+oc set resources dc/jenkins --limits=memory=4Gi,cpu=4 --requests=memory=2Gi,cpu=2 -n gpte-jenkins
+oc create clusterrole namespace-patcher --verb=patch --resource=namespaces
+oc adm policy add-cluster-role-to-user namespace-patcher system:serviceaccount:gpte-jenkins:jenkins
+oc adm policy add-cluster-role-to-user self-provisioner system:serviceaccount:gpte-jenkins:jenkins
+oc policy add-role-to-user edit system:serviceaccount:gpte-jenkins:default -n gpte-jenkins
+oc run restartjenkins --schedule="0 23 * * *" --restart=OnFailure -n gpte-jenkins --image=registry.access.redhat.com/openshift3/jenkins-2-rhel7:v3.9 -- /bin/sh -c "oc scale dc jenkins --replicas=0 && sleep 20 && oc scale dc jenkins --replicas=1"
+
 oc get all --selector app=jenkins-persistent
 oc get all --selector name=jenkins
 --- won't work, why?
@@ -331,3 +339,13 @@ docker run -it --privileged registry.access.redhat.com/rhel7-minimal /bin/bash
 
 docker pull registry.access.redhat.com/rhel7.6
 docker pull registry.access.redhat.com/rhel8-beta/rhel-minimal
+
+
+##### AMQ
+
+oc get template -n openshift
+oc process openshift//amq63-basic -p APPLICATION_NAME=broker -p MQ_USERNAME=admin -p MQ_PASSWORD=admin -p MQ_QUEUES=test -p MQ_PROTOCOL=amqp -n fuse7 | oc create -f -
+
+mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -DarchetypeCatalog=https://maven.repository.redhat.com/ga/io/fabric8/archetypes/archetypes-catalog/2.2.0.fuse-720018-redhat-00001/archetypes-catalog-2.2.0.fuse-720018-redhat-00001-archetype-catalog.xml -DarchetypeGroupId=org.jboss.fuse.fis.archetypes -DarchetypeArtifactId=spring-boot-camel-amq-archetype -DarchetypeVersion=2.2.0.fuse-720018-redhat-00001
+
+oc policy add-role-to-user view system:serviceaccount:fuse7:default
