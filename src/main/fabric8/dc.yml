@@ -65,6 +65,13 @@ spec:
         - name: JAVA_OPTIONS
           value: -Dspring.profiles.active=
         image: ${project.artifactId}:latest
+        resources:
+          requests:
+            cpu: "0.2"
+            memory: 256Mi
+          limits:
+            cpu: "1.0"
+            memory: 256Mi
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
