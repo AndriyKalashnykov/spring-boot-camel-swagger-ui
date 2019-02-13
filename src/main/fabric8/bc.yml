@@ -5,7 +5,7 @@ metadata:
     app: ${project.artifactId}
   name: ${project.artifactId}
 spec:
-  failedBuildsHistoryLimit: 50
+  failedBuildsHistoryLimit: 5
   runPolicy: Serial
   source:
     git:
@@ -14,7 +14,7 @@ spec:
   strategy:
     jenkinsPipelineStrategy: {}
     type: JenkinsPipeline
-  successfulBuildsHistoryLimit: 50
+  successfulBuildsHistoryLimit: 5
   triggers:
     - github:
         secret: aayuxRcq_5ab6QcsOeKm
