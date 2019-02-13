@@ -25,6 +25,7 @@ https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resourc
 
 # Openshift Cheatsheet
 https://gist.github.com/rafaeltuelho/111850b0db31106a4d12a186e1fbc53e
+https://github.com/openshift/openshift-docs/blob/master/cli_reference/cli_by_example_content.adoc
 https://github.com/t0ffel/origin-aggregated-logging_2/blob/e8aec6a5ece1fd51d8915e25e4953d4df04c5843/deployer/scripts/upgrade.sh
 
 This repository contains a demo of Spring Boot with Apache Camel and Swagger UI.
@@ -264,6 +265,10 @@ oc create rolebinding default-view --clusterrole=view --serviceaccount=fuse7:def
 --
 mvn clean package fabric8:deploy -Popenshift
 mvn clean package fabric8:deploy -Popenshift -Dfabric8.generator.fromMode=istag -Dfabric8.generator.from=openshift/fis-java-openshift:2.0
+
+####Deploy logs
+
+oc logs -f dc/spring-boot-camel-swagger-ui
 
 Chage config
 ---
