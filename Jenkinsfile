@@ -75,7 +75,7 @@ node('maven') {
         //openshiftBuild(bldCfg: 'spring-boot-camel-swagger-ui', showBuildLogs: 'true')
     }
 
-    stage('Unit Test') {spring-boot
+    stage('Unit Test') {
         echo 'Unit Test'
         sh "mvn test"
     }
