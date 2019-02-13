@@ -3,6 +3,8 @@ kind: BuildConfig
 metadata:
   labels:
     app: ${project.artifactId}
+    group: com.redhat
+    provider: fabric8
   name: ${project.artifactId}
 spec:
   failedBuildsHistoryLimit: 5
