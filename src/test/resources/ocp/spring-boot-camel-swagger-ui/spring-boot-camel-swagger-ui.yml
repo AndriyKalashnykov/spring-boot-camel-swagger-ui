@@ -1,0 +1,41 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  creationTimestamp: 2019-02-11T20:59:44Z
+  labels:
+    app: spring-boot-camel-swagger-ui
+    group: com.redhat
+    provider: fabric8
+    version: 0.0.1-SNAPSHOT
+  name: spring-boot-camel-swagger-ui
+  namespace: fuse7
+  resourceVersion: "220436678"
+  selfLink: /apis/build.openshift.io/v1/namespaces/fuse7/buildconfigs/spring-boot-camel-swagger-ui
+  uid: f58799df-2e3f-11e9-8234-02fe3a6cfaba
+spec:
+  failedBuildsHistoryLimit: 50
+  nodeSelector: {}
+  output: {}
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      ref: master
+      uri: https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui
+    type: Git
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: Jenkinsfile
+    type: JenkinsPipeline
+  successfulBuildsHistoryLimit: 50
+  triggers:
+  - github:
+      secret: aayuxRcq_5ab6QcsOeKm
+    type: GitHub
+  - generic:
+      secret: sQwH414v9wCpJY7gh8G5
+    type: Generic
+  - type: ConfigChange
+status:
+  lastVersion: 7

@@ -1,0 +1,38 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  creationTimestamp: 2019-02-11T20:59:07Z
+  labels:
+    app: spring-boot-camel-swagger-ui
+    group: com.redhat
+    provider: fabric8
+    version: 0.0.1-SNAPSHOT
+  name: spring-boot-camel-swagger-ui-s2i
+  namespace: fuse7
+  resourceVersion: "220440213"
+  selfLink: /apis/build.openshift.io/v1/namespaces/fuse7/buildconfigs/spring-boot-camel-swagger-ui-s2i
+  uid: df1287c1-2e3f-11e9-8234-02fe3a6cfaba
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: {}
+  output:
+    to:
+      kind: ImageStreamTag
+      name: spring-boot-camel-swagger-ui:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    binary: {}
+    type: Binary
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: jboss-fuse70-java-openshift:1.0
+        namespace: openshift
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers: []
+status:
+  lastVersion: 18
