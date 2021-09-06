@@ -343,6 +343,7 @@ docker pull registry.access.redhat.com/rhel7-minimal
 docker run -it --privileged registry.access.redhat.com/rhel7-minimal /bin/bash
 
 docker pull registry.access.redhat.com/rhel7.6
+docker pull registry.access.redhat.com/rhel7.6
 docker pull registry.access.redhat.com/rhel8-beta/rhel-minimal
 
 
@@ -354,3 +355,5 @@ oc process openshift//amq63-basic -p APPLICATION_NAME=broker -p MQ_USERNAME=admi
 mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -DarchetypeCatalog=https://maven.repository.redhat.com/ga/io/fabric8/archetypes/archetypes-catalog/2.2.0.fuse-720018-redhat-00001/archetypes-catalog-2.2.0.fuse-720018-redhat-00001-archetype-catalog.xml -DarchetypeGroupId=org.jboss.fuse.fis.archetypes -DarchetypeArtifactId=spring-boot-camel-amq-archetype -DarchetypeVersion=2.2.0.fuse-720018-redhat-00001
 
 oc policy add-role-to-user view system:serviceaccount:fuse7:default
+
+oc new-build  -D $"FROM docker.io/openshift/jenkins-agent-maven-35-centos7:v3.11\nUSER root\nRUN yum -y install skopeo && yum clean all\nUSER 1001" --name=jenkins-agent-appdev
