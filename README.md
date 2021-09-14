@@ -1,4 +1,6 @@
 # spring-boot-camel-swagger-ui
+[![test](https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui/actions/workflows/test.yml/badge.svg)](https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui/actions/workflows/test.yml)
+
 https://access.redhat.com/documentation/en-us/red_hat_fuse/7.2/html-single/release_notes/#FISDistrib
 
 # Red Hat Fuse Supported Standards
