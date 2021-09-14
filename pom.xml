@@ -20,8 +20,8 @@
         <spring-boot.version>1.5.16.RELEASE</spring-boot.version>
         <fabric8.maven.plugin.version>3.5.33.fuse-720026-redhat-00001</fabric8.maven.plugin.version>
 
-        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <jdk-source.version>1.8</jdk-source.version>
         <jdk-target.version>1.8</jdk-target.version>
         <swagger.version>2.8.0</swagger.version>
@@ -199,7 +199,7 @@
 
 
     <build>
-        <defaultGoal>spring-boot:run</defaultGoal>
+        <!-- <defaultGoal>spring-boot:run</defaultGoal> -->
 
         <plugins>
             <plugin>
@@ -211,6 +211,30 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>${jdk-source.version}</version>
+                                </requireJavaVersion>
+                                <requireMavenVersion>
+                                    <version>[3.0,)</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
