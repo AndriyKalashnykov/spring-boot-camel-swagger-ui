@@ -1,5 +1,6 @@
-# spring-boot-camel-swagger-ui
 [![test](https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui/actions/workflows/test.yml/badge.svg)](https://github.com/AndriyKalashnykov/spring-boot-camel-swagger-ui/actions/workflows/test.yml)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FAndriyKalashnykov%2Fspring-boot-camel-swagger-ui&count_bg=%2333CD56&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+# spring-boot-camel-swagger-ui
 
 https://access.redhat.com/documentation/en-us/red_hat_fuse/7.2/html-single/release_notes/#FISDistrib
 
